@@ -13,9 +13,7 @@ Aby móc zacząć pisać potrzebujemy następujących rzeczy:
 
 ## Konfiguracja środowiska do pracy:
 
-1. Pobieramy **Java 8** [klik](https://www.java.com/pl/download/)
-2. Po pobraniu i zainstalowaniu Javy przechodzimy do instalacji **Eclipse IDE**.
-* ***Eclipse IDE*** można pobrać z tego linku [klik](https://www.eclipse.org/downloads/?)
-3. Pobieramy i instalujemy **Source Tree** [klik](https://www.sourcetreeapp.com/)
-* Dzięki temu programowi będziemy mogli łączyć się z repozytorium i nie tylko.
+1. Pobieramy **Java 8** [Link Java8](https://www.java.com/pl/download/)
+2. Po pobraniu i zainstalowaniu Javy przechodzimy do instalacji **Eclipse IDE**. [link Eclipse IDE](https://www.eclipse.org/downloads/?)
+3. Pobieramy i instalujemy **Source Tree** [link SourceTree](https://www.sourcetreeapp.com/)
 4. cdn...
