@@ -27,8 +27,8 @@ Aby móc zacząć pisać potrzebujemy następujących rzeczy:
 5. Teraz musimy uruchomić naszego **Eclipse IDE** i dodać do niego nasze repo.
 * W tym celu wybieramy zakładkę "**File**" -> "**Import**" -> "**Git**" -> "**Projects from Git**"
 * Wybieramy teraz "**Existing Local Repository**" -> "**Add**" i wybieramy gdzie znajduje się nasze repo, które przed chwilą sklonowaliśmy.
-* Zaznaczamy wszystko (**pliki gita jeżeli wyskoczą**) klikamy "**Next**" zostawiamy tą pierwszą opcje klikamy "**Next**" i "**Finish**".
-* Tak o to dodaliśmy nasze repozytorium do eclipse!
-* Wszystko gotowe można zacząć pisać!
+* Zaznaczamy wszystko (**pliki gita jeżeli wyskoczą**) klikamy "**Next**" zostawiamy tą pierwszą opcje klikamy "**Next**" i "**Finish**".  
+* Tak o to dodaliśmy nasze repozytorium do eclipse!  
+* Wszystko gotowe można zacząć pisać!  
 
 ## Podstawy Git
