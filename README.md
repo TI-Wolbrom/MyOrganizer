@@ -31,4 +31,14 @@ Aby móc zacząć pisać potrzebujemy następujących rzeczy:
 * Tak o to dodaliśmy nasze repozytorium do eclipse!  
 * Wszystko gotowe można zacząć pisać!  
 
+## Scene Builder
+
+Można go pobrać z tego linku: [LINK](http://gluonhq.com/products/scene-builder/)  
+Służy głównie do tworzenia plików FXML i prostego zarządzania UI.  
+Bardzo przydatny, nasza praca będzie głównie opierała się na wykorzystywaniu go.  
+
+## Tutorial JavaFX
+Link do kursu: [LINK](https://www.youtube.com/watch?v=rEzzJaoC6uo&list=PLpzwMkmxJDUwQuQR7Rezut5UE_8UGDxkU)
+
 ## Podstawy Git
+Link do kursu: [LINK](https://git-scm.com/book/pl/v1/Pierwsze-kroki-Podstawy-Git)
