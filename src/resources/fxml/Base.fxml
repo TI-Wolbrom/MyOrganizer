@@ -36,6 +36,11 @@
                   <MenuItem id="menuItemExit" mnemonicParsing="false" text="Wyjdź z programu" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Ustawienia">
+              <items>
+                <MenuItem id="menuItemSettingsBase" mnemonicParsing="false" text="Ustawienia ogólne" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Pomoc">
             <items>
                   <MenuItem id="menuItemCheckUpdates" mnemonicParsing="false" text="Sprawdź aktualizacje" />
