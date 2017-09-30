@@ -37,9 +37,9 @@ public class Main extends Application {
 			@Override
 			protected Void call() throws Exception {
 				// Tutaj na razie nic sie nie dzieje
-				// wiec poprostu czekamy 3 sekundy (3000ms) i konczymy zadanie
+				// wiec poprostu czekamy 5 sekund (5000ms) i konczymy zadanie
 				// W przyszlosci bedzie tu aktualizacja programu/wczytywanie plikow etc.
-				Thread.sleep(5000); // 3 sekundy
+				Thread.sleep(5000);
 				
 				return null;
 			}
