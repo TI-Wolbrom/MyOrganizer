@@ -1,6 +1,7 @@
 package konkurs;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -37,9 +38,13 @@ public class Main extends Application {
 			@Override
 			protected Void call() throws Exception {
 				// Tutaj na razie nic sie nie dzieje
-				// wiec poprostu czekamy 3 sekundy (3000ms) i konczymy zadanie
+				// wiec poprostu czekamy 5 sekund (5000ms) i konczymy zadanie
 				// W przyszlosci bedzie tu aktualizacja programu/wczytywanie plikow etc.
-				Thread.sleep(5000); // 3 sekundy
+				Thread.sleep(5000); // 5 sekund
+				
+				updateScene.loadResources();
+				
+				Thread.sleep(2000);
 				
 				return null;
 			}
@@ -101,7 +106,15 @@ public class Main extends Application {
 	// Metoda main
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			UpdateManager.initialize();
+
+			launch(args);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 		
 }

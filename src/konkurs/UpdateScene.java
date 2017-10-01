@@ -1,5 +1,6 @@
 package konkurs;
 
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -37,8 +38,10 @@ public class UpdateScene extends Scene {
 		HBox hbox = new HBox(25);
 		HBox hbox2 = new HBox(30);
 		
-		statusLabel = new Label("Proszê czekaæ sprawdzanie aktualizacji...");
+		statusLabel = new Label();
 		statusLabel.setFont(new Font("Tahoma", 26));
+		
+		changeStatus("Proszê czekaæ sprawdzanie aktualizacji...");
 		
 		hbox.getChildren().add(statusLabel);
 		
@@ -55,6 +58,23 @@ public class UpdateScene extends Scene {
 		vbox.getChildren().add(hbox2);
 		
 		setRoot(vbox);
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda zmienia status loadera
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void changeStatus(String status) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() { statusLabel.setText(status); }
+		});
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda wczytuje pliki / ustawienia itp.
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void loadResources() {
+		changeStatus("£adowanie niezbêdnych plików...");
 	}
 	
 }
