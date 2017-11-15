@@ -1,7 +1,6 @@
 package konkurs;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -15,12 +14,18 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	private Stage mainStage;
 	
 	private UpdateScene updateScene;
 	private Scene scene;
 	
 	private Thread loadingThread;
+	
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda jest wywolywana, gdy nasza aplikacja sie wlacza.
@@ -34,23 +39,33 @@ public class Main extends Application {
 		
 		mainStage.setScene(updateScene);
 		
-		Task<Void> task = new Task<Void>() {
+		AppManager.applyMain(this);
+		UpdateManager.applyBehaviour(updateScene);
+		
+		Task<Void> updateTask = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				// Tutaj na razie nic sie nie dzieje
-				// wiec poprostu czekamy 5 sekund (5000ms) i konczymy zadanie
-				// W przyszlosci bedzie tu aktualizacja programu/wczytywanie plikow etc.
-				Thread.sleep(5000); // 5 sekund
+				System.out.println("[UPDATE_TASK] Thread ID: " + Thread.currentThread().getId() + " Name=" + Thread.currentThread().getName());
+				
+				if(UpdateManager.allowsUpdate()) {
+					// Tutaj na razie nic sie nie dzieje
+					// wiec poprostu czekamy 5 sekund (5000ms) i konczymy zadanie
+					Thread.sleep(5000);
+					
+					UpdateManager.doUpdate();
+				}
 				
 				updateScene.loadResources();
 				
+				// Dajemy jakis czas zeby zasymulowac
+				// wczytywanie plikow itp.
 				Thread.sleep(2000);
 				
 				return null;
 			}
 		};
 		
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+		updateTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			@Override
 			public void handle(WorkerStateEvent event) {
 				try {
@@ -61,7 +76,7 @@ public class Main extends Application {
 			}
 		});
 		
-		loadingThread = new Thread(task);
+		loadingThread = new Thread(updateTask);
 		loadingThread.start();
 
 		mainStage.show();
@@ -107,14 +122,19 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
 		try {
+			if(args.length > 0 && args[0].equalsIgnoreCase("-export")) {
+				UpdateManager.exportTargetMD5ToFile("sync.txt");
+				System.exit(0);
+			}
+			
+			// Wylaczamy aktualizacje
+			// oczywiscie mozemy je wlaczyc ale aktualnie nie musimy sprawdzac aktualizacji chyba nie musze mowic dlaczego :)
+			UpdateManager.allowUpdate(false);
 			UpdateManager.initialize();
 
 			launch(args);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-		
 }

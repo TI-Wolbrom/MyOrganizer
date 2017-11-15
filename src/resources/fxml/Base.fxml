@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Base.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Base.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.MainController">
    <bottom>
       <Label text="Wersja programu: XXX" textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -33,7 +33,7 @@
                   <MenuItem id="menuItemP2" mnemonicParsing="false" text="Moje wydarzenia" />
                   <MenuItem id="menuItemP3" mnemonicParsing="false" styleClass="menuItemIc" text="Moja siłownia" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem id="menuItemExit" mnemonicParsing="false" text="Wyjdź z programu" />
+                  <MenuItem id="menuItemExit" fx:id="menuItemExit" mnemonicParsing="false" onAction="#onMenuItemExit" text="Wyjdź z programu" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Ustawienia">

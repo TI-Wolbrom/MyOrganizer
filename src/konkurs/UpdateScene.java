@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class UpdateScene extends Scene {
+public class UpdateScene extends Scene implements UpdateBehaviour {
 
 	private Stage mainStage;
 	
@@ -41,7 +41,7 @@ public class UpdateScene extends Scene {
 		statusLabel = new Label();
 		statusLabel.setFont(new Font("Tahoma", 26));
 		
-		changeStatus("Proszê czekaæ sprawdzanie aktualizacji...");
+		changeStatus("Czekaj...");
 		
 		hbox.getChildren().add(statusLabel);
 		
@@ -76,5 +76,30 @@ public class UpdateScene extends Scene {
 	public void loadResources() {
 		changeStatus("£adowanie niezbêdnych plików...");
 	}
-	
+
+	@Override
+	public void onUpdateComplete() {
+		System.out.println("Aktualizacja zakoñczona!");
+	}
+
+	@Override
+	public void onUpdateConnectionError() {
+		changeStatus("Wyst¹pi³ problem z po³¹czeniem!");
+	}
+
+	@Override
+	public void onUpdateStarted() {
+		changeStatus("Rozpoczynam aktualizacje...");
+	}
+
+	@Override
+	public void onUpdateNothingToUpdate() {
+		changeStatus("Wersja jest aktualna!");
+	}
+
+	@Override
+	public void onUpdateError() {
+		changeStatus("Wyst¹pi³ problem z aktualizacj¹!");
+	}
+
 }
