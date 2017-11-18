@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,7 +20,8 @@ public class Main extends Application {
 	private Stage mainStage;
 	
 	private UpdateScene updateScene;
-	private Scene scene;
+	
+	private Scene sceneMain;
 	
 	private Thread loadingThread;
 	
@@ -50,7 +52,7 @@ public class Main extends Application {
 				if(UpdateManager.allowsUpdate()) {
 					// Tutaj na razie nic sie nie dzieje
 					// wiec poprostu czekamy 5 sekund (5000ms) i konczymy zadanie
-					Thread.sleep(5000);
+					Thread.sleep(1500);
 					
 					UpdateManager.doUpdate();
 				}
@@ -102,9 +104,9 @@ public class Main extends Application {
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Base.fxml"));
 		
 		BorderPane pane = loader.load();
-	
-		scene = new Scene(pane);
-	
+		
+		sceneMain = new Scene(pane);
+		
 		mainStage.hide();
 		
 		mainStage.setTitle("[My Organizer] by 3TI Wolbrom");
@@ -112,9 +114,28 @@ public class Main extends Application {
 		
 		mainStage.setWidth(800);
 		mainStage.setHeight(600);
-		mainStage.setScene(scene);
+		mainStage.setScene(sceneMain);
 			
 		mainStage.show();
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny o autorach
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildAbout() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/About.fxml"));
+		
+		StackPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do przelaczenia na scene glowna
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void switchToMain() {
+		mainStage.setScene(sceneMain);
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -127,9 +148,9 @@ public class Main extends Application {
 				System.exit(0);
 			}
 			
-			// Wylaczamy aktualizacje
-			// oczywiscie mozemy je wlaczyc ale aktualnie nie musimy sprawdzac aktualizacji chyba nie musze mowic dlaczego :)
-			UpdateManager.allowUpdate(false);
+			// Jezeli chcemy aby nasz program uruchamial sie szybciej
+			// polecam ustawic ta opcje na false
+			UpdateManager.allowUpdate(true);
 			UpdateManager.initialize();
 
 			launch(args);

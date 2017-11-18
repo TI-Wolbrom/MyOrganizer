@@ -41,11 +41,11 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 		statusLabel = new Label();
 		statusLabel.setFont(new Font("Tahoma", 26));
 		
-		changeStatus("Czekaj...");
+		changeStatus("Sprawdzanie aktualizacji...");
 		
 		hbox.getChildren().add(statusLabel);
 		
-		versionLabel = new Label("Wersja programu: XXX");
+		versionLabel = new Label("Wersja programu: " + AppManager.VERSION);
 		versionLabel.setFont(new Font("Tahoma", 15));
 		
 		authorLabel = new Label("My Organizer by 3TI Wolbrom (2017-2018)");
@@ -79,7 +79,7 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 
 	@Override
 	public void onUpdateComplete() {
-		System.out.println("Aktualizacja zakoñczona!");
+		changeStatus("Aktualizacja zakoñczona!");
 	}
 
 	@Override

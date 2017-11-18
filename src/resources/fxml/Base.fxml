@@ -12,7 +12,7 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Base.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.MainController">
    <bottom>
-      <Label text="Wersja programu: XXX" textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
+      <Label fx:id="lblVersion" text="Wersja programu: " textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Tahoma Bold" size="22.0" />
          </font>
@@ -44,7 +44,7 @@
           <Menu mnemonicParsing="false" text="Pomoc">
             <items>
                   <MenuItem id="menuItemCheckUpdates" mnemonicParsing="false" text="Sprawdź aktualizacje" />
-              <MenuItem id="menuItemAbout" mnemonicParsing="false" text="O programie" />
+              <MenuItem id="menuItemAbout" fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="O programie" />
             </items>
           </Menu>
         </menus>

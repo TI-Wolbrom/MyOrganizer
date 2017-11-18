@@ -6,8 +6,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import javafx.application.Platform;
 
 public class UpdateManager {
 
@@ -73,8 +78,6 @@ public class UpdateManager {
 	public static void doUpdate() throws Exception {
 		String result = Utils.getHTML(UPDATE_URL + UPDATE_URL_TARGET_SYNC);
 		
-		System.out.println(result);
-		
 		if(!result.isEmpty()) {
 			System.out.println("[UPDATE_PROCESS] MD5 from Server: (" + result + ") our (" + updateTargetMd5 + ")");
 			
@@ -110,7 +113,7 @@ public class UpdateManager {
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	private static void downloadAppAndUpdate() throws Exception {
-		System.out.println("[UPDATE_PROCESS] Downloading app...");
+		System.out.println("[UPDATE_PROCESS] Downloading update...");
 		String appSource = Utils.getHTML(UPDATE_URL + UPDATE_URL_TARGET);
 		
 		if(!appSource.isEmpty()) {
@@ -126,7 +129,29 @@ public class UpdateManager {
 			
 			System.out.println("[UPDATE_PROCESS] Applying update...");
 			
-			//TODO:
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					Path oldVersionsPath = Paths.get("old");
+					
+					try {
+						Files.createDirectory(oldVersionsPath);
+					} catch (IOException ex) {
+						ex.printStackTrace();
+						AppManager.closeApp();
+					}
+					
+					try {
+						Files.move(Paths.get("MyOrganizer.jar"), Paths.get("old/MyOrganizer-old.jar"));
+						Files.move(Paths.get("MyOrganizer-Update.jar"), Paths.get("MyOrganizer.jar"));
+					} catch (IOException e) {
+						e.printStackTrace();
+						AppManager.closeApp();
+					}
+				}
+			});
+			
+			System.out.println("[UPDATE_PROCESS] All done!");
 		}
 	}
 	
