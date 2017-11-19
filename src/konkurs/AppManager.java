@@ -4,7 +4,7 @@ import javafx.application.Platform;
 
 public class AppManager {
 
-	public static final String VERSION = "0.1.6b";
+	public static final String VERSION = "0.1.7a";
 	
 	private static Main appInstance;
 	

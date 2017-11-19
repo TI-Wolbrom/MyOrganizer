@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -136,14 +137,17 @@ public class UpdateManager {
 					
 					try {
 						Files.createDirectory(oldVersionsPath);
+					} catch(FileAlreadyExistsException ex) {
+						System.out.println("[UPDATE_PROCESS] Old Dir exist :D");
 					} catch (IOException ex) {
 						ex.printStackTrace();
 						AppManager.closeApp();
 					}
 					
 					try {
-						Files.move(Paths.get("MyOrganizer.jar"), Paths.get("old/MyOrganizer-old.jar"));
-						Files.move(Paths.get("MyOrganizer-Update.jar"), Paths.get("MyOrganizer.jar"));
+						// TODO: Dodaæ wsparcie dla Linuxa
+						Runtime.getRuntime().exec("cmd.exe /c " + "start update.bat");
+						AppManager.closeApp();
 					} catch (IOException e) {
 						e.printStackTrace();
 						AppManager.closeApp();
