@@ -77,6 +77,8 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 		changeStatus("£adowanie niezbêdnych plików...");
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateComplete() {
 		changeStatus("Aktualizacja zakoñczona!");
@@ -101,5 +103,7 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 	public void onUpdateError() {
 		changeStatus("Wyst¹pi³ problem z aktualizacj¹!");
 	}
+	
+	// --------------------------------------------------------------------------------------------------------------------
 
 }

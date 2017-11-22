@@ -11,6 +11,8 @@ import java.security.MessageDigest;
 
 public class Utils {
 	
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	public static String getFileChecksum(MessageDigest digest, File file) throws IOException {
 	    // Get file input stream for reading the file content
 		FileInputStream fis = new FileInputStream(file);
@@ -40,6 +42,8 @@ public class Utils {
 	   return sb.toString();
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	public static String getHTML(String urlStr) throws Exception {
 		StringBuilder result = new StringBuilder();
 		URL url = new URL(urlStr);

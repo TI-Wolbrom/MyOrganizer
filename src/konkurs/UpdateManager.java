@@ -145,8 +145,15 @@ public class UpdateManager {
 					}
 					
 					try {
-						// TODO: Dodaæ wsparcie dla Linuxa
-						Runtime.getRuntime().exec("cmd.exe /c " + "start update.bat");
+						if(AppManager.OS_NAME.indexOf("win") >= 0) {
+							Runtime.getRuntime().exec("cmd.exe /c " + "start update.bat"); // Dla Windows
+						} else if(AppManager.OS_NAME.indexOf("nix") >= 0 || AppManager.OS_NAME.indexOf("nux") >= 0 || AppManager.OS_NAME.indexOf("aix") > 0 ) {
+							Runtime.getRuntime().exec("/bin/bash -c " + "sh update.sh"); // Dla Linux
+						} else {
+							// Brak wsparcia
+							System.err.println("[UPDATE_PROCESS] OS not supported at all!");
+						}
+						
 						AppManager.closeApp();
 					} catch (IOException e) {
 						e.printStackTrace();
