@@ -1,6 +1,7 @@
 package konkurs;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -12,6 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import konkurs.taskmodules.impl.TaskManager;
+import konkurs.taskmodules.impl.TestTask;
 
 public class Main extends Application {
 
@@ -117,6 +121,19 @@ public class Main extends Application {
 		mainStage.setScene(sceneMain);
 			
 		mainStage.show();
+		
+		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				AppManager.closeApp();
+			}
+		});
+		
+		// Uruchamiamy TaskManagera
+		TaskManager.initialize();
+		
+		LocalDateTime ldtNow = LocalDateTime.now();
+		TaskManager.createTask(new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond())));
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -150,9 +167,9 @@ public class Main extends Application {
 			
 			// Jezeli chcemy aby nasz program uruchamial sie szybciej
 			// polecam ustawic ta opcje na false
-			UpdateManager.allowUpdate(true);
+			UpdateManager.allowUpdate(false);
 			UpdateManager.initialize();
-
+			
 			launch(args);
 		} catch (Exception e) {
 			e.printStackTrace();

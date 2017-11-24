@@ -11,7 +11,7 @@ public class AboutController {
 	
     @FXML
     private Button btnOk;
-
+    
     @FXML
     private Button btnExit;
 
