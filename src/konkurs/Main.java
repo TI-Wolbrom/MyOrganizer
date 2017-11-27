@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -132,8 +133,8 @@ public class Main extends Application {
 		// Uruchamiamy TaskManagera
 		TaskManager.initialize();
 		
-		LocalDateTime ldtNow = LocalDateTime.now();
-		TaskManager.createTask(new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond())));
+		//LocalDateTime ldtNow = LocalDateTime.now();
+		//TaskManager.createTask(new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond())));
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -144,6 +145,19 @@ public class Main extends Application {
 		loader.setLocation(this.getClass().getResource("/resources/fxml/About.fxml"));
 		
 		StackPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny o wydarzeniach
+	// TODO: Znalezc lepszy sposob na ladowanie plikow fxml za pomoca jakiegos "factory" albo cos w tym stylu.
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildEventsEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Events.fxml"));
+		
+		GridPane pane = loader.load();
 		
 		mainStage.setScene(new Scene(pane));
 	}

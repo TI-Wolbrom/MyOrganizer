@@ -15,6 +15,9 @@ public class MainController {
 	
 	@FXML
 	private BorderPane borderPane;
+
+	@FXML
+	private MenuItem menuItemEvents;
 	
 	@FXML
 	private MenuItem menuItemExit;
@@ -29,6 +32,18 @@ public class MainController {
 		lblVersion.setText(lblVersion.getText() + AppManager.VERSION);
 	}
 	
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	@FXML
+	public void onMenuItemEvents(ActionEvent e) {
+		try {
+			AppManager.getAppInstance().buildEventsEditor();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			AppManager.closeApp();
+		}
+	}
+
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	@FXML
