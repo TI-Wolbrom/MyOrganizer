@@ -2,13 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="konkurs.fx_contollers.EventsController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.EventsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,6 +25,39 @@
       <TreeView fx:id="trEvents" prefHeight="200.0" prefWidth="200.0" />
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
          <children>
+            <GridPane prefHeight="230.0" prefWidth="290.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="107.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="183.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="144.0" minHeight="9.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="191.0" minHeight="8.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="191.0" minHeight="8.0" prefHeight="87.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nazwa Wydarzenia" />
+                  <TextField fx:id="txtEventName" promptText="Długość tekstu 1-64" GridPane.columnIndex="1" />
+                  <Label text="Opis" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtEventDescription" promptText="Długość tekstu 1-64" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Data" GridPane.rowIndex="2" />
+                  <Label text="Inne" GridPane.rowIndex="3" />
+                  <HBox prefHeight="29.0" prefWidth="188.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Czas" />
+                        <TextField fx:id="txtEventTime" prefHeight="25.0" prefWidth="45.0" promptText="00:00" />
+                        <DatePicker fx:id="txtEventDate" prefHeight="25.0" prefWidth="100.0" promptText="Wypełnij" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <CheckBox fx:id="chbEventDisabled" mnemonicParsing="false" text="Wyłącz wydarzenie" />
+                        <CheckBox fx:id="chbShowMessage" mnemonicParsing="false" text="Wyświetl komunikat" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
             <Button fx:id="btnNewEvent" mnemonicParsing="false" onAction="#onBtnNewEvent" prefHeight="25.0" prefWidth="133.0" text="Nowe wydarzenie" />
             <Button fx:id="btnEditEvent" mnemonicParsing="false" onAction="#onBtnEditEvent" prefHeight="25.0" prefWidth="133.0" text="Edytuj wydarzenie" />
             <Button fx:id="btnSaveAll" mnemonicParsing="false" onAction="#onBtnSaveAll" prefHeight="25.0" prefWidth="133.0" text="Zapisz wszystko" />

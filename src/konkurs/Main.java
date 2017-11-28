@@ -181,7 +181,7 @@ public class Main extends Application {
 			
 			// Jezeli chcemy aby nasz program uruchamial sie szybciej
 			// polecam ustawic ta opcje na false
-			UpdateManager.allowUpdate(true);
+			UpdateManager.allowUpdate(false);
 			UpdateManager.initialize();
 			
 			launch(args);
