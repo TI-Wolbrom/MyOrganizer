@@ -4,9 +4,10 @@
 
 package konkurs.taskmodules.impl;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Task {
+public abstract class Task implements Serializable {
 
 	// Nazwa zadania
 	private String taskName;

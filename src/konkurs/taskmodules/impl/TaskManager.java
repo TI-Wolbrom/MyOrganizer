@@ -4,6 +4,9 @@
 
 package konkurs.taskmodules.impl;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
@@ -61,6 +64,16 @@ public class TaskManager {
 				task.onTaskRemove();
 				it.remove();
 			}
+		}
+	}
+	
+	public static void exportTaskToFile(Task task) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("task-" + task.getTaskDescription().length() + 1 + "-" + task.getTaskName().length() + 4 + "_" + task.getTaskDate().getNano()));
+			oos.writeObject(task);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

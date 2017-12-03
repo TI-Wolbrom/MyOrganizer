@@ -134,7 +134,8 @@ public class Main extends Application {
 		TaskManager.initialize();
 		
 		//LocalDateTime ldtNow = LocalDateTime.now();
-		//TaskManager.createTask(new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond())));
+		//TestTask tt = new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond()));
+		//TaskManager.exportTaskToFile(tt);
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
