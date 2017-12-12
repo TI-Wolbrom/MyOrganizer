@@ -163,6 +163,18 @@ public class Main extends Application {
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny planu lekcji
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildPlanEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Plan.fxml"));
+		
+		GridPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda sluzy do przelaczenia na scene glowna
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void switchToMain() {
