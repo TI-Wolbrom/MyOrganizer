@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -52,46 +52,46 @@
                         <Font name="Tahoma Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="8:00 - 8:45" GridPane.rowIndex="1">
+                  <TextField text="14:05 - 14:50" GridPane.rowIndex="8">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="8:50 - 9:35" GridPane.rowIndex="2">
+                  </TextField>
+                  <TextField text="13:15 - 14:00" GridPane.rowIndex="7">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="9:40 - 10:25" GridPane.rowIndex="3">
+                  </TextField>
+                  <TextField text="12:25 - 13:10" GridPane.rowIndex="6">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="10:40 - 11:25" GridPane.rowIndex="4">
+                  </TextField>
+                  <TextField text="11:35 - 12:20" GridPane.rowIndex="5">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="11:35 - 12:20 " GridPane.rowIndex="5">
+                  </TextField>
+                  <TextField text="10:40 - 11:25" GridPane.rowIndex="4">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="12:25 - 13:10" GridPane.rowIndex="6">
+                  </TextField>
+                  <TextField text="8:00 - 8:45" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="13:15 - 14:00" GridPane.rowIndex="7">
+                  </TextField>
+                  <TextField text="9:40 - 10:25" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
-                  <Label text="14:05 - 14:50" GridPane.rowIndex="8">
+                  </TextField>
+                  <TextField text="8:50 - 9:35" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Tahoma Bold" size="13.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
-                  </Label>
+                  </TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1">
@@ -103,8 +103,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
@@ -149,14 +147,6 @@
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></TextField>
-                  <TextField text="Praszek" GridPane.rowIndex="9">
-                     <font>
-                        <Font name="Tahoma" size="14.0" />
-                     </font></TextField>
-                  <TextField text="Praszek" GridPane.rowIndex="10">
-                     <font>
-                        <Font name="Tahoma" size="14.0" />
-                     </font></TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="2">
@@ -173,7 +163,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
                   <Label text="Wtorek">
@@ -181,42 +170,46 @@
                         <Font name="Tahoma Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                  <TextField text="Praszek" GridPane.rowIndex="8">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="7">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="6">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="5">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="4">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="3">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="2">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="1">
                      <font>
                         <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
-                  <TextArea text="Praszek" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
-                     <font>
-                        <Font name="Tahoma" size="14.0" />
-                     </font></TextArea>
+                     </font>
+                  </TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="3">
@@ -233,8 +226,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
                   <Label text="Środa">
@@ -242,6 +233,46 @@
                         <Font name="Tahoma Bold" size="15.0" />
                      </font>
                   </Label>
+                  <TextField text="Praszek" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="4">
@@ -265,6 +296,46 @@
                         <Font name="Tahoma Bold" size="15.0" />
                      </font>
                   </Label>
+                  <TextField text="Praszek" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="5">
@@ -288,32 +359,81 @@
                         <Font name="Tahoma Bold" size="15.0" />
                      </font>
                   </Label>
+                  <TextField text="Praszek" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField text="Praszek" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </TextField>
                </children>
             </GridPane>
          </children>
       </GridPane>
       <GridPane GridPane.rowIndex="1">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="195.0" minWidth="10.0" prefWidth="135.0" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="448.0" minWidth="10.0" prefWidth="448.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="448.0" minWidth="10.0" prefWidth="393.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="ALWAYS" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onBtnReturn" text="Wróć" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="28.0" prefWidth="84.0" text="Wróć" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Tahoma" size="14.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Zapisz zmiany" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               </font>
+               <GridPane.margin>
+                  <Insets right="155.0" />
+               </GridPane.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="157.0" text="Zapisz zmiany" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Tahoma" size="14.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Cofnij zmiany" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+               </font>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="158.0" text="Cofnij zmiany" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Tahoma" size="14.0" />
-               </font></Button>
+               </font>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin></Button>
          </children>
       </GridPane>
    </children>
