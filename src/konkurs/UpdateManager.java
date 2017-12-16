@@ -14,6 +14,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javafx.application.Platform;
+import konkurs.fx.dialogs.DialogHelper;
 
 public class UpdateManager {
 
@@ -21,7 +22,7 @@ public class UpdateManager {
 	
 	// Mozemy zmienic ta wartosc na false
 	// jezeli np. nie chcemy aby nasz program sprawdzal i instalowal aktualizacje.
-	private static boolean DO_UPDATE = true;
+	private static boolean DO_UPDATE = false;
 	
 	// Sciezka do katalogu na serwerze w ktorym znajduja sie wszystkie
 	// pliki binarne programu (czyli jar itp.)
@@ -63,14 +64,12 @@ public class UpdateManager {
 	
 	// --------------------------------------------------------------------------------------------------------------------
 	
-	public static void initialize() {
+	public static void initialize() throws NoSuchAlgorithmException {
 		try {
 			// Pobieramy MD5 pliku
 			updateTargetMd5 = Utils.getFileChecksum(MessageDigest.getInstance("MD5"), new File(UPDATE_TARGET));
-		} catch (NoSuchAlgorithmException e) {
-			System.err.println("[UPDATE_PROCESS] initialize() returned: NoSuchAlgorithmException");
 		} catch (IOException e) {
-			System.err.println("[UPDATE_PROCESS] Could not find MD5 for File (Possible not exist)");
+			System.err.println("[UPDATE_PROCESS] Could not find MD5 for File (Possible not exist) [DeveloperMode?]");
 		}
 	}
 	
@@ -140,6 +139,7 @@ public class UpdateManager {
 					} catch(FileAlreadyExistsException ex) {
 						System.out.println("[UPDATE_PROCESS] Old Dir exist :D");
 					} catch (IOException ex) {
+						DialogHelper.showExceptionDialog((Exception)ex);
 						ex.printStackTrace();
 						AppManager.closeApp();
 					}
@@ -155,7 +155,8 @@ public class UpdateManager {
 						}
 						
 						AppManager.closeApp();
-					} catch (IOException e) {
+					} catch (Exception e) {
+						DialogHelper.showExceptionDialog(e);
 						e.printStackTrace();
 						AppManager.closeApp();
 					}

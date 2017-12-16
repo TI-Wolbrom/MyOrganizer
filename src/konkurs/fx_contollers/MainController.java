@@ -1,13 +1,12 @@
 package konkurs.fx_contollers;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import konkurs.AppManager;
+import konkurs.fx.dialogs.DialogHelper;
 
 public class MainController {
 
@@ -38,7 +37,8 @@ public class MainController {
 	public void onMenuItemEvents(ActionEvent e) {
 		try {
 			AppManager.getAppInstance().buildEventsEditor();
-		} catch (IOException ex) {
+		} catch (Exception ex) {
+			DialogHelper.showExceptionDialog(ex);
 			ex.printStackTrace();
 			AppManager.closeApp();
 		}
@@ -57,7 +57,8 @@ public class MainController {
 	public void onMenuItemAbout(ActionEvent e) {
 		try {
 			AppManager.getAppInstance().buildAbout();
-		} catch (IOException ex) {
+		} catch (Exception ex) {
+			DialogHelper.showExceptionDialog(ex);
 			ex.printStackTrace();
 			AppManager.closeApp();
 		}

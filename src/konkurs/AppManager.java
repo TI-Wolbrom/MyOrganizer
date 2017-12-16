@@ -1,13 +1,12 @@
 package konkurs;
 
-import javafx.application.Platform;
 import konkurs.taskmodules.impl.TaskManager;
 
 public class AppManager {
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
-	public static final String VERSION = "0.1.8a";
+	public static final String VERSION = "0.2.0";
 	public static String OS_NAME = System.getProperty("os.name").toLowerCase();
 	
 	// --------------------------------------------------------------------------------------------------------------------
@@ -27,9 +26,8 @@ public class AppManager {
 		// o zamknieciu naszego TaskManagera
 		TaskManager.shutdown();
 		
-		// Moze byc przyczyna problemow
-		// na razie zostawiamy jednak tak
-		Platform.exit();
+		// Zamykamy
+		AppManager.getAppInstance().getMainStage().close();
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------

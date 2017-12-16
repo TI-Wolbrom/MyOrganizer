@@ -5,7 +5,6 @@
 package konkurs.taskmodules.impl;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +12,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import konkurs.fx.dialogs.DialogHelper;
 
 public class TaskManager {
 	private static LinkedHashMap<LocalDateTime, Task> tasks = new LinkedHashMap<>();
@@ -30,7 +31,8 @@ public class TaskManager {
 						updateTasks();
 						
 						Thread.sleep(1000);
-					} catch (InterruptedException e) {
+					} catch (Exception e) {
+						DialogHelper.showExceptionDialog(e);
 						e.printStackTrace();
 					}
 				}
@@ -47,8 +49,6 @@ public class TaskManager {
 	}
 	
 	private static void updateTasks() {
-		System.out.println("TaskManager.updateTasks()");
-		
 		Iterator<Map.Entry<LocalDateTime, Task>> it = tasks.entrySet().iterator();
 		
 		while(it.hasNext()) {
@@ -72,15 +72,23 @@ public class TaskManager {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("task-" + task.getTaskDescription().length() + 1 + "-" + task.getTaskName().length() + 4 + "_" + task.getTaskDate().getNano()));
 			oos.writeObject(task);
 			oos.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			DialogHelper.showExceptionDialog(e);
 		}
 	}
 	
-	public static void createTask(Task task) {
-		System.out.println("Creating task: \"" + task.getTaskName() + "\" with date: {" + task.getTaskDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "}");
-		task.onTaskAdd();
-		tasks.put(task.getTaskDate(), task);
+	public static boolean createTask(Task task) {
+		if(!tasks.containsKey(task.getTaskDate())) {
+			System.out.println("Creating task: \"" + task.getTaskName() + "\" with date: {" + task.getTaskDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "}");
+			
+			tasks.put(task.getTaskDate(), task);
+			task.onTaskAdd();
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public static void clearTasks() {

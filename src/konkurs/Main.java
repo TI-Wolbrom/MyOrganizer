@@ -1,8 +1,7 @@
 package konkurs;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-
+import java.security.NoSuchAlgorithmException;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -15,8 +14,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import konkurs.fx.dialogs.DialogHelper;
 import konkurs.taskmodules.impl.TaskManager;
-import konkurs.taskmodules.impl.TestTask;
 
 public class Main extends Application {
 
@@ -31,7 +30,6 @@ public class Main extends Application {
 	private Thread loadingThread;
 	
 	// --------------------------------------------------------------------------------------------------------------------
-	
 	
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -55,13 +53,14 @@ public class Main extends Application {
 				System.out.println("[UPDATE_TASK] Thread ID: " + Thread.currentThread().getId() + " Name=" + Thread.currentThread().getName());
 				
 				if(UpdateManager.allowsUpdate()) {
-					// Tutaj na razie nic sie nie dzieje
-					// wiec poprostu czekamy 5 sekund (5000ms) i konczymy zadanie
+					// Symulowanie czasu aktualizacji
 					Thread.sleep(1500);
 					
+					// Przechodzenie do aktualizacji
 					UpdateManager.doUpdate();
 				}
 				
+				// Wczytywanie plikow (fake)
 				updateScene.loadResources();
 				
 				// Dajemy jakis czas zeby zasymulowac
@@ -77,8 +76,11 @@ public class Main extends Application {
 			public void handle(WorkerStateEvent event) {
 				try {
 					buildMain();
-				} catch (IOException e) {
+				} catch (Exception e) {
+					DialogHelper.showExceptionDialog(e);
 					e.printStackTrace();
+					AppManager.closeApp();
+					return;
 				}
 			}
 		});
@@ -116,9 +118,10 @@ public class Main extends Application {
 		
 		mainStage.setTitle("[My Organizer] by 3TI Wolbrom");
 		mainStage.setResizable(true);
-		
 		mainStage.setWidth(800);
 		mainStage.setHeight(600);
+		mainStage.setMinWidth(640);
+		mainStage.setMinHeight(480);
 		mainStage.setScene(sceneMain);
 			
 		mainStage.show();
@@ -132,7 +135,7 @@ public class Main extends Application {
 		
 		// Uruchamiamy TaskManagera
 		TaskManager.initialize();
-		
+	
 		//LocalDateTime ldtNow = LocalDateTime.now();
 		//TestTask tt = new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond()));
 		//TaskManager.exportTaskToFile(tt);
@@ -171,6 +174,12 @@ public class Main extends Application {
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
+	
+	public Stage getMainStage() {
+		return mainStage;
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	// Metoda main
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
@@ -179,14 +188,24 @@ public class Main extends Application {
 				UpdateManager.exportTargetMD5ToFile("sync.txt");
 				System.exit(0);
 			}
+
+			// Testowanie (WIP)
+			ResourceManager.create();
+			ResourceManager.addResource("app.name", "MyOrganizer by 3TI Wolbrom".getBytes());
 			
 			// Jezeli chcemy aby nasz program uruchamial sie szybciej
 			// polecam ustawic ta opcje na false
-			UpdateManager.allowUpdate(false);
-			UpdateManager.initialize();
+			UpdateManager.allowUpdate(UpdateManager.allowsUpdate());
 			
-			launch(args);
+			try {
+				UpdateManager.initialize();
+				launch(args);
+			} catch(NoSuchAlgorithmException ex) {
+				DialogHelper.showExceptionDialogLater(ex);
+			}
+			
 		} catch (Exception e) {
+			DialogHelper.showExceptionDialogLater(e);
 			e.printStackTrace();
 		}
 	}

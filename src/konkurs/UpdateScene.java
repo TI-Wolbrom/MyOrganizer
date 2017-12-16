@@ -37,7 +37,7 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 		
 		HBox hbox = new HBox(25);
 		HBox hbox2 = new HBox(30);
-		
+				
 		statusLabel = new Label();
 		statusLabel.setFont(new Font("Tahoma", 26));
 		

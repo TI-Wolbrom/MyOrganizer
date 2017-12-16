@@ -19,11 +19,15 @@ public abstract class Task implements Serializable {
 	// ma sie wykonac
 	private LocalDateTime taskDate;
 	
+	// Czy wydarzenie jest wlaczone
+	private boolean taskEnabled;
+	
 	public Task(String taskName, String taskDescription, LocalDateTime taskDate) {
 		setTaskName(taskName);
 		setTaskDescription(taskDescription);
 		
 		setTaskDate(taskDate);
+		setTaskEnabled(true);
 	}
 	
 	public void onTaskComplete() {
@@ -60,6 +64,14 @@ public abstract class Task implements Serializable {
 
 	public void setTaskDate(LocalDateTime taskDate) {
 		this.taskDate = taskDate;
+	}
+
+	public boolean isTaskEnabled() {
+		return taskEnabled;
+	}
+
+	public void setTaskEnabled(boolean taskEnabled) {
+		this.taskEnabled = taskEnabled;
 	}
 	
 }
