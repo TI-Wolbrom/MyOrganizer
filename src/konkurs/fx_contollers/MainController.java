@@ -19,6 +19,9 @@ public class MainController {
 	private MenuItem menuItemEvents;
 	
 	@FXML
+	private MenuItem menuItemPlan;
+	
+	@FXML
 	private MenuItem menuItemExit;
 
 	@FXML
@@ -30,7 +33,7 @@ public class MainController {
 	private void initialize() {
 		lblVersion.setText(lblVersion.getText() + AppManager.VERSION);
 	}
-	
+
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	@FXML
@@ -39,6 +42,18 @@ public class MainController {
 			AppManager.getAppInstance().buildEventsEditor();
 		} catch (Exception ex) {
 			DialogHelper.showExceptionDialog(ex);
+			ex.printStackTrace();
+			AppManager.closeApp();
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	@FXML
+	public void onMenuItemPlan(ActionEvent e) {
+		try {
+			AppManager.getAppInstance().buildPlanEditor();
+		} catch (IOException ex) {
 			ex.printStackTrace();
 			AppManager.closeApp();
 		}

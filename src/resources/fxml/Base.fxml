@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Base.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Base.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.MainController">
    <bottom>
       <Label fx:id="lblVersion" text="Wersja programu: " textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -29,7 +29,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Wybierz moduł">
             <items>
-                  <MenuItem id="menuItemP1" mnemonicParsing="false" text="Mój plan lekcji" />
+                  <MenuItem id="menuItemP1" fx:id="menuItemPlan" mnemonicParsing="false" onAction="#onMenuItemPlan" text="Mój plan lekcji" />
                   <MenuItem id="menuItemP2" fx:id="menuItemEvents" mnemonicParsing="false" onAction="#onMenuItemEvents" text="Moje wydarzenia" />
                   <MenuItem id="menuItemP3" mnemonicParsing="false" styleClass="menuItemIc" text="Moja siłownia" />
                   <SeparatorMenuItem mnemonicParsing="false" />
