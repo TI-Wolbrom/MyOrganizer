@@ -13,7 +13,11 @@ import konkurs.Main;
 
 public class NormalDialogController {
 	
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	private Stage stage;
+	
+	// --------------------------------------------------------------------------------------------------------------------
 	
     @FXML
     public Label detailsLabel;
@@ -27,7 +31,11 @@ public class NormalDialogController {
     @FXML
     private ImageView imgIcon;
     
+	// --------------------------------------------------------------------------------------------------------------------
+    
     private Image alertImg;
+    
+	// --------------------------------------------------------------------------------------------------------------------
     
     @FXML
     private void initialize() {
@@ -43,6 +51,8 @@ public class NormalDialogController {
     	alertImg = new Image(Main.class.getResource("/resources/fxml/other_icons/alert.png").toExternalForm());
     	imgIcon.setImage(alertImg);
     }
+    
+	// --------------------------------------------------------------------------------------------------------------------
     
     @FXML
     public void onOkClick(MouseEvent event) {

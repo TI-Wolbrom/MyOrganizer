@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 public class UpdateScene extends Scene implements UpdateBehaviour {
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	private Stage mainStage;
 	
 	private Label statusLabel;
@@ -31,7 +33,7 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void build() {
 		mainStage.setResizable(false);
-		mainStage.setTitle("ProszÍ czekaÊ ...");
+		mainStage.setTitle("Proszƒô czekaƒá ...");
 		
 		VBox vbox = new VBox(20);
 		
@@ -74,34 +76,42 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 	// Ta metoda wczytuje pliki / ustawienia itp.
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void loadResources() {
-		changeStatus("£adowanie niezbÍdnych plikÛw...");
+		changeStatus("≈Åadowanie niezbƒôdnych plik√≥w...");
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public void onUpdateComplete() {
-		changeStatus("Aktualizacja zakoÒczona!");
+		changeStatus("Aktualizacja zako≈Ñczona!");
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateConnectionError() {
-		changeStatus("Wystπpi≥ problem z po≥πczeniem!");
+		changeStatus("WystƒÖpi≈Ç problem z po≈ÇƒÖczeniem!");
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateStarted() {
 		changeStatus("Rozpoczynam aktualizacje...");
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateNothingToUpdate() {
 		changeStatus("Wersja jest aktualna!");
 	}
+	
+	// --------------------------------------------------------------------------------------------------------------------
 
 	@Override
 	public void onUpdateError() {
-		changeStatus("Wystπpi≥ problem z aktualizacjπ!");
+		changeStatus("WystƒÖpi≈Ç problem z aktualizacjƒÖ!");
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------

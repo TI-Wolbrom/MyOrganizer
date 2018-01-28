@@ -1,22 +1,27 @@
 package konkurs.fx_contollers;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map.Entry;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import konkurs.AppManager;
 import konkurs.fx.dialogs.DialogHelper;
+import konkurs.taskmodules.impl.AlertTask;
+import konkurs.taskmodules.impl.Task;
 import konkurs.taskmodules.impl.TaskManager;
-import konkurs.taskmodules.impl.TestTask;
 
 public class EventsController {
 
@@ -26,6 +31,11 @@ public class EventsController {
     private TreeView<String> trEvents;
 
     private TreeItem<String> trEventsRoot; // NOT FXML
+    
+    private boolean editMode;
+    private Task taskInEdit = null;
+    
+	// --------------------------------------------------------------------------------------------------------------------
     
     @FXML
     private TextField txtEventName;
@@ -44,6 +54,9 @@ public class EventsController {
 
     @FXML
     private CheckBox chbShowMessage;
+    
+    @FXML
+    private TextArea txtMessageToShow;
 
     @FXML
     private Button btnNewEvent;
@@ -53,7 +66,10 @@ public class EventsController {
 
     @FXML
     private Button btnSaveAll;
-
+    
+    @FXML
+    private Button btnRemoveEvent;
+    
     @FXML
     private Button btnReturn;
     
@@ -61,15 +77,27 @@ public class EventsController {
 
     @FXML
 	private void initialize() {
+    	setEditMode(false);
+    	
     	trEventsRoot = new TreeItem<>("Zaplanowane wydarzenia");
     	trEvents.setRoot(trEventsRoot);
+    	
+		updateEventsVisual();
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
     
     @FXML
     public void onBtnEditEvent(ActionEvent event) {
-    	
+    	if(taskInEdit == null) {
+	    	setTaskInEdit(new Task());
+	    	applyFor(TaskManager.getTaskCollection().getTaskByTaskName(trEvents.getSelectionModel().getSelectedItem().getValue()));
+	    	
+	    	btnNewEvent.setText("Zastosuj");
+	    	
+	    	setEditMode(true);
+	    	btnEditEvent.setDisable(true);
+    	}
     }
 
 	// --------------------------------------------------------------------------------------------------------------------
@@ -80,7 +108,7 @@ public class EventsController {
     	// poprawnie wypelnione
     	boolean isOK = txtEventName.getText().matches("^.{1,64}$") 
     			&& txtEventDescription.getText().matches("^.{1,64}$") 
-    			&& txtEventTime.getText().matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+    			&& txtEventTime.getText().matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") || txtEventTime.getText().matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$")
     			&& txtEventDate.getValue() != null;
     	
     	// Jezeli zostaly poprawnie wypelnione
@@ -91,17 +119,69 @@ public class EventsController {
     		// Pobieramy czas z pola txtEventTime
     		LocalDateTime ldt = LocalDateTime.of(eDate, LocalTime.parse(txtEventTime.getText(), DateTimeFormatter.ISO_LOCAL_TIME));
     		
-    		// Tworzymy nowe wydarzenie/zadanie (TestTask) za pomoca TaskManager.
-    		// Jezeli nie uda nam sie utworzyc tego wydarzenia/zadania (bo np. juz istnieje)
-    		// to wypisujemy blad, ze wydarzenie jest juz stworzone z ta data.
-    		if(TaskManager.createTask(new TestTask(ldt))) {
-        		// Dodajemy do drzewka z wydarzeniami
-        		trEventsRoot.getChildren().add(new TreeItem<String>(txtEventName.getText()));
-    		} else {
-    			DialogHelper.showDefaultDialog("B³¹d!", "Wyst¹pi³ b³¹d!\nPrawdopodobnie wydarzenie z podan¹ dat¹ zosta³o ju¿ utworzone!\nStwórz nowe wydarzenie z inn¹ dat¹ aby dodaæ je listy.");
+    		// Sprawdzamy teraz czy uzytkownik nie ma wlaczonego trybu EditMode
+    		// czyli czy nie edytuje istniejacego juz wydarzenia
+    		if(isEditMode()) {
+    			Task nowTaskCp = taskInEdit.copy();
+    			saveTaskFromFields();
+    			
+    			boolean same = taskInEdit.getTaskName().equalsIgnoreCase(nowTaskCp.getTaskName());
+    			if(same) {  			
+    				TaskManager.updateTask(taskInEdit);
+					
+    				updateEventsVisual();
+    				clearFields();
+    				
+    				onBtnSaveAll(null);
+    				
+        			btnNewEvent.setText("Nowe wydarzenie");
+        			setEditMode(false);
+        			setTaskInEdit(null);
+    			} else {   				
+    				if(TaskManager.getTaskCollection().getTaskByTaskName(taskInEdit.getTaskName()) != null) {			
+    					TaskManager.updateTask(taskInEdit);
+    					
+    					updateEventsVisual();
+    					clearFields();
+
+        				onBtnSaveAll(null);
+    					
+            			btnNewEvent.setText("Nowe wydarzenie");
+            			setEditMode(false);			
+            			setTaskInEdit(null);
+    				} else {
+    					    					
+    					btnNewEvent.setText("Nowe wydarzenie");
+    					setEditMode(false);
+    					setTaskInEdit(null);
+    					System.out.println("Not possible");
+    				}
+    			}
+
+    			btnEditEvent.setDisable(false);
+    		} else {	
+	    		// Tworzymy nowe wydarzenie/zadanie za pomoca TaskManager.
+	    		// Jezeli nie uda nam sie utworzyc tego wydarzenia/zadania (bo np. juz istnieje)
+	    		// to wypisujemy blad, ze wydarzenie jest juz stworzone z ta data.
+	    		Task t = null;
+	    		
+	    		if(chbShowMessage.isSelected())
+	    			t = new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt);
+	    		else
+	    			t = new Task(txtEventName.getText(), txtEventDescription.getText(), ldt);
+	    		
+	    		if(TaskManager.createTask(t)) {
+	        		// Dodajemy do drzewka z wydarzeniami
+	        		trEventsRoot.getChildren().add(new TreeItem<String>(txtEventName.getText()));
+	        		
+	        		// Zapisujemy do pliku
+	        		onBtnSaveAll(null);
+	    		} else {
+	    			DialogHelper.showDefaultDialog("BÅ‚Ä…d!", "WystÄ…piÅ‚ bÅ‚Ä…d!\nPrawdopodobnie podobne wydarzenie zostaÅ‚o juÅ¼ utworzone!\nStwÃ³rz inne wydarzenie aby dodaÄ‡ je do listy.");
+	    		}
     		}
     	} else {
-    		DialogHelper.showDefaultDialog("Uzupe³nij wszystkie pola!", "Prosimy uzupe³niæ wszystkie pola!");
+    		DialogHelper.showDefaultDialog("UzupeÅ‚nij wszystkie pola wedÅ‚ug schematu!", "Prosimy uzupeÅ‚niÄ‡ wszystkie pola wedÅ‚ug schematu!");
     	}
     }
 
@@ -115,10 +195,99 @@ public class EventsController {
 	// --------------------------------------------------------------------------------------------------------------------
     
     @FXML
-    public void onBtnSaveAll(ActionEvent event) {
+    public void onBtnRemoveEvent(ActionEvent event) {
+    	Task t = TaskManager.getTaskCollection().getTaskByTaskName(trEvents.getSelectionModel().getSelectedItem().getValue());
     	
+    	if(TaskManager.removeTask(t)) {
+    		updateEventsVisual();
+    		onBtnSaveAll(null);
+    	}
+    }
+    
+	// --------------------------------------------------------------------------------------------------------------------
+    
+    @FXML
+    public void onBtnSaveAll(ActionEvent event) {
+    	try {
+    		System.out.println("Saving events...");
+    		long start = System.currentTimeMillis();
+			TaskManager.saveToFile();
+			long end = System.currentTimeMillis() - start;
+			System.out.println("Total events: " + TaskManager.getTaskCollection().getTasks().size());
+			System.out.println("Done in " + end + " ms!");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
+	// --------------------------------------------------------------------------------------------------------------------
+    
+    private void updateEventsVisual() {
+    	trEventsRoot.getChildren().clear();
+    	
+		for(Entry<LocalDateTime, Task> t : TaskManager.getTaskCollection().getTasks().entrySet())
+	    	trEventsRoot.getChildren().add(new TreeItem<String>(t.getValue().getTaskName()));
+    }
+    
+    // --------------------------------------------------------------------------------------------------------------------
+    
+    private void applyFor(Task t) {
+    	if(t != null) {
+    		txtEventName.setText(t.getTaskName());
+    		txtEventDescription.setText(t.getTaskDescription());
+    		txtEventTime.setText(t.getTaskDate().format(DateTimeFormatter.ISO_TIME));
+    		txtEventDate.setValue(t.getTaskDate().toLocalDate());
+    		chbEventDisabled.setSelected(!t.isTaskEnabled());	
+    		if (t instanceof AlertTask) {
+				AlertTask at = (AlertTask) t;
+	    		txtMessageToShow.setText(at.getMessage());
+				chbShowMessage.setSelected(true);
+			} else {
+				chbShowMessage.setSelected(false);
+				txtMessageToShow.setText("");
+			}
+    	}
+    }
+    
+    private void saveTaskFromFields() {
+    	taskInEdit.setTaskName(txtEventName.getText());
+    	taskInEdit.setTaskDescription(txtEventDescription.getText());
+    	taskInEdit.setTaskEnabled(!chbEventDisabled.isSelected());
+    	taskInEdit.setTaskDate(LocalDateTime.of(txtEventDate.getValue(), LocalTime.parse(txtEventTime.getText())));  	
+    	if(taskInEdit instanceof AlertTask) {
+    		AlertTask at = (AlertTask) taskInEdit;
+    		at.setMessage(txtMessageToShow.getText());
+    	}
+    }
+    
+    private void clearFields() {
+    	txtEventName.setText("");
+    	txtEventDescription.setText("");
+    	txtEventDate.setValue(null);
+    	txtEventTime.setText("");
+    	txtMessageToShow.setText("");
+    	chbEventDisabled.setSelected(false);
+    	chbShowMessage.setSelected(false);
+    }
+
+	public boolean isEditMode() {
+		return editMode;
+	}
+
+	public void setEditMode(boolean editMode) {
+		this.editMode = editMode;
+	}
+
+	public Task getTaskInEdit() {
+		return taskInEdit;
+	}
+
+	public void setTaskInEdit(Task taskInEdit) {
+		this.taskInEdit = taskInEdit;
+	}
+    
 	// --------------------------------------------------------------------------------------------------------------------
     
 }

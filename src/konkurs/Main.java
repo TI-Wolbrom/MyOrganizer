@@ -46,7 +46,7 @@ public class Main extends Application {
 		
 		AppManager.applyMain(this);
 		UpdateManager.applyBehaviour(updateScene);
-		
+				
 		Task<Void> updateTask = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {

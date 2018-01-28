@@ -35,17 +35,12 @@ public class ExceptionDialogController {
     
     // ----------------------------------------------------------------------------------------------------------
     
-	private Stage stage;
     private Image errorImg;
     
     // ----------------------------------------------------------------------------------------------------------
     
     @FXML
-    private void initialize() {
-	//	stage = (Stage) imgIcon.getScene().getWindow();
-
-	//	stage.getIcons().add(errorImg);
-				
+    private void initialize() {				
     	errorImg = new Image(Main.class.getResource("/resources/fxml/other_icons/error.png").toExternalForm());
     	imgIcon.setImage(errorImg);
     }

@@ -15,6 +15,8 @@ import konkurs.fx_contollers.NormalDialogController;
 
 public class DialogHelper {
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	// Powinno byc uzywane na tym samym watku co Java-fx thread.
 	public static void showDefaultDialog(String caption, String text) {
 		FXMLLoader loader = new FXMLLoader();
@@ -37,6 +39,8 @@ public class DialogHelper {
 		}
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	// Powinno byc uzywane na tym samym watku co Java-fx thread.
 	public static void showExceptionDialog(Exception e) {
 		FXMLLoader loader = new FXMLLoader();
@@ -66,6 +70,8 @@ public class DialogHelper {
 		}
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	// Powinno byc uzywane wtedy, gdy znajdujemy sie na innym watku
 	// czyli np. UpdateScene/UpdateManager
 	public static void showDefaultDialogLater(String caption, String text) {
@@ -74,6 +80,8 @@ public class DialogHelper {
 		});
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	// Powinno byc uzywane wtedy, gdy znajdujemy sie na innym watku
 	// czyli np. UpdateScene/UpdateManager
 	public static void showExceptionDialogLater(Exception e) {
