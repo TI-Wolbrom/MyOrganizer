@@ -201,6 +201,8 @@ public class Main extends Application {
 				System.exit(0);
 			}
 
+			Utils.lockInstance();
+			
 			// Testowanie (WIP)
 			ResourceManager.create();
 			ResourceManager.addResource("app.name", "MyOrganizer by 3TI Wolbrom".getBytes());
@@ -216,6 +218,7 @@ public class Main extends Application {
 				DialogHelper.showExceptionDialogLater(ex);
 			}
 			
+			Utils.unlockInstance();
 		} catch (Exception e) {
 			DialogHelper.showExceptionDialogLater(e);
 			e.printStackTrace();

@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 
 public class Utils {
@@ -61,5 +64,27 @@ public class Utils {
 		br.close();
 		
 		return result.toString();
+	}
+	
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	public static void lockInstance() throws Exception {
+		Path path = Paths.get(System.getProperty("user.home") + "/" + ".myorganizer");
+		
+		if(Files.exists(path))
+			throw new Exception("Only one instance of the MyOrganizer can be running!");
+		else {
+			Files.createFile(path);
+			System.out.println("[AppLock] Locking instance...");
+		}
+	}
+	
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	public static void unlockInstance() throws IOException{
+		Path path = Paths.get(System.getProperty("user.home") + "/" + ".myorganizer");
+
+		if(Files.deleteIfExists(path))
+			System.out.println("[AppLock] Unlocking instance...");
 	}
 }

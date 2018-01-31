@@ -49,7 +49,7 @@ public class DialogHelper {
 		try {
 			GridPane gp = loader.load();
 			ExceptionDialogController edc = (ExceptionDialogController) loader.getController();
-			edc.messageLabel.setText("Nast¹pi³ wyj¹tek:");
+			edc.messageLabel.setText("WystÄ…piÅ‚ wyjÄ…tek:");
 
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
