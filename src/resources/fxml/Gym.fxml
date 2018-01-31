@@ -2,58 +2,27 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<Pane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.GymController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="0.0" prefWidth="558.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="0.0" prefWidth="558.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Pane>
-               <children>
-                  <DatePicker layoutX="421.0" layoutY="60.0" prefHeight="25.0" prefWidth="102.0" />
-                  <Button fx:id="btnReturn" layoutX="463.0" layoutY="351.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" />
-                  <Button layoutX="523.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Idź do" />
-                  <Button layoutX="421.0" layoutY="142.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Wyniki" />
-                  <Button layoutX="421.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Informacje o diecie" />
-               </children>
-            </Pane>
+            <DatePicker layoutX="431.0" layoutY="135.0" prefHeight="25.0" prefWidth="102.0" />
+            <Button fx:id="btnReturn" layoutX="463.0" layoutY="351.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" />
+            <Button layoutX="533.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Idź do" />
+            <Button layoutX="431.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Wyniki" />
+            <Button layoutX="431.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Informacje o diecie" />
          </children>
-      </GridPane>
-      <ScrollPane layoutX="14.0" layoutY="61.0" prefHeight="321.0" prefWidth="405.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="390.0">
-               <children>
-                  <Pane layoutX="6.0" layoutY="14.0" prefHeight="49.0" prefWidth="379.0">
-                     <children>
-                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="52.0" text="1" />
-                        <Button layoutX="299.0" layoutY="12.0" mnemonicParsing="false" text="Informacje" />
-                        <Button layoutX="197.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Plan ćwiczeń" />
-                     </children>
-                  </Pane>
-                  <Pane layoutX="6.0" layoutY="63.0" prefHeight="49.0" prefWidth="379.0">
-                     <children>
-                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="52.0" text="2" />
-                        <Button layoutX="299.0" layoutY="12.0" mnemonicParsing="false" text="Informacje" />
-                        <Button layoutX="197.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Plan ćwiczeń" />
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <Spinner layoutX="116.0" layoutY="23.0" prefHeight="25.0" prefWidth="172.0" />
-      <Pane layoutX="448.0" layoutY="45.0" />
+      </Pane>
    </children>
-</Pane>
+</GridPane>

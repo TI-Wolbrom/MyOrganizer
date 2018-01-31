@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import konkurs.AppManager;
-import konkurs.Main;
 
 public class GymController {
 
@@ -12,8 +11,7 @@ public class GymController {
     private Button btnReturn;
 
     @FXML
-    void onBtnReturn(ActionEvent event) {
+    public void onBtnReturn(ActionEvent event) {
     	AppManager.getAppInstance().switchToMain();
     }
-    
 }

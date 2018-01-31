@@ -182,11 +182,11 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda sluzy do stworzenia sceny silowni
 	// -----------------------------------------------------------------------------------------------------------------------------
-	public void buildGym() throws IOException {
+	public void buildGymEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym.fxml"));
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym2.fxml"));
 		
-		Pane pane = loader.load();
+		GridPane pane = loader.load();
 		
 		mainStage.setScene(new Scene(pane));
 	}

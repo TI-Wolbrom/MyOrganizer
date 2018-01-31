@@ -60,19 +60,34 @@ public class MainController {
 			AppManager.closeApp();
 		}
 	}
-
+	
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	@FXML
-	public void onMenuItemPlan(ActionEvent e) {
+	public void onMenuItemGym(ActionEvent e) {
 		try {
-			AppManager.getAppInstance().buildGym();
+			AppManager.getAppInstance().buildGymEditor();
 		} catch (Exception ex) {
 			DialogHelper.showExceptionDialog(ex);
 			ex.printStackTrace();
 			AppManager.closeApp();
 		}
 	}
+
+
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	@FXML
+	public void onMenuItemPlan(ActionEvent e) {
+		try {
+			AppManager.getAppInstance().buildPlanEditor();;
+		} catch (Exception ex) {
+			DialogHelper.showExceptionDialog(ex);
+			ex.printStackTrace();
+			AppManager.closeApp();
+		}
+	}
+	
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
