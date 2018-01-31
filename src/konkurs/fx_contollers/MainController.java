@@ -66,7 +66,7 @@ public class MainController {
 	@FXML
 	public void onMenuItemPlan(ActionEvent e) {
 		try {
-			AppManager.getAppInstance().buildPlanEditor();
+			AppManager.getAppInstance().buildGym();
 		} catch (Exception ex) {
 			DialogHelper.showExceptionDialog(ex);
 			ex.printStackTrace();

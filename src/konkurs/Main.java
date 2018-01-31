@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -174,6 +175,18 @@ public class Main extends Application {
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Plan.fxml"));
 		
 		GridPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny silowni
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildGym() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym.fxml"));
+		
+		Pane pane = loader.load();
 		
 		mainStage.setScene(new Scene(pane));
 	}
