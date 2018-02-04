@@ -192,14 +192,25 @@ public class Main extends Application {
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny kalkulatora
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildCalcEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Calc.fxml"));
+		
+		GridPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda sluzy do przelaczenia na scene glowna
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void switchToMain() {
 		mainStage.setScene(sceneMain);
 	}
 	
-	// -----------------------------------------------------------------------------------------------------------------------------
-	
+
 	public Stage getMainStage() {
 		return mainStage;
 	}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.CalcController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="0.0" prefWidth="558.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Pane>
+         <children>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="Kalkulator spalania kalorii">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" />
+            <ComboBox fx:id="rodzajAktywnosci" layoutX="169.0" layoutY="83.0" prefHeight="25.0" prefWidth="263.0" />
+            <Label layoutX="14.0" layoutY="79.0" prefHeight="32.0" prefWidth="156.0" text="Rodzaj aktywności:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="122.0" prefHeight="32.0" prefWidth="156.0" text="Czas (min):">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="czas" layoutX="170.0" layoutY="126.0" prefHeight="25.0" prefWidth="263.0" />
+            <Label layoutX="14.0" layoutY="168.0" prefHeight="32.0" prefWidth="156.0" text="Masa ciała (kg):">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="masaCiala" layoutX="170.0" layoutY="172.0" prefHeight="25.0" prefWidth="263.0" text="(jak bd podana w informacjach to zablokowane)" />
+            <Label layoutX="14.0" layoutY="283.0" prefHeight="32.0" prefWidth="156.0" text="Spalone kalorie:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="spaloneKalorie" editable="false" layoutX="169.0" layoutY="287.0" prefHeight="25.0" prefWidth="263.0" />
+            <Button fx:id="oblicz" layoutX="327.0" layoutY="225.0" mnemonicParsing="false" onAction="#oblicz" prefHeight="25.0" prefWidth="106.0" text="Oblicz" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
