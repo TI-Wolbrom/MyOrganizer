@@ -186,7 +186,7 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym2.fxml"));
 		
-		GridPane pane = loader.load();
+		BorderPane pane = loader.load();
 		
 		mainStage.setScene(new Scene(pane));
 	}
@@ -196,9 +196,60 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildCalcEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("/resources/fxml/Calc.fxml"));
+		loader.setLocation(this.getClass().getResource("/resources/fxml/calc.fxml"));
 		
-		GridPane pane = loader.load();
+		BorderPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny planu treningowego
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildPlanTEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/planTreningowy.fxml"));
+		
+		BorderPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny dodawania planu treningowego
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildAddPlanTEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/addPlanT.fxml"));
+		
+		BorderPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny BMI
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildBMIEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/BMI.fxml"));
+		
+		BorderPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny LBM
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildLBMEditor() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/LBM.fxml"));
+		
+		BorderPane pane = loader.load();
 		
 		mainStage.setScene(new Scene(pane));
 	}

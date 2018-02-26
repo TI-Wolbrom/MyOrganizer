@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.addPlanTController">
+   <bottom>
+      <AnchorPane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" AnchorPane.rightAnchor="14.0" />
+            <Button layoutX="314.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Zapisz" AnchorPane.leftAnchor="314.0" />
+            <TextField layoutX="14.0" layoutY="26.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="14.0" />
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="17.0" prefWidth="301.0" text="Nazwa planu:" AnchorPane.leftAnchor="14.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="Dodawanie planu treningowego" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <AnchorPane prefHeight="288.0" prefWidth="510.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="218.0" prefWidth="512.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="260.0" text="Ćwiczenie" />
+                <TableColumn minWidth="4.0" prefWidth="150.0" text="Ilość powtórzeń" />
+                  <TableColumn prefWidth="100.0" text="Czas(min)" />
+              </columns>
+            </TableView>
+            <TextField layoutX="260.0" layoutY="221.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="153.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="260.0" />
+            <TextField layoutX="412.0" layoutY="221.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="412.0" />
+            <TextField layoutY="221.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="260.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" />
+            <Button layoutX="412.0" layoutY="246.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Dodaj" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="412.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="288.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="288.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

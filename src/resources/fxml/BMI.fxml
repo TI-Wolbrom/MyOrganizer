@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.BMIController">
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="556.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="156.0" text="Wzrost (m):" AnchorPane.leftAnchor="14.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="63.0" prefHeight="32.0" prefWidth="156.0" text="Masa ciała (kg):" AnchorPane.leftAnchor="14.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="masaCiala" layoutX="169.0" layoutY="65.0" prefHeight="25.0" prefWidth="300.0" text="(jak bd podana w informacjach to zablokowane)" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="51.0" />
+            <Label layoutX="14.0" layoutY="218.0" prefHeight="32.0" prefWidth="156.0" text="Twoje BMI to:" AnchorPane.leftAnchor="14.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="BMI" editable="false" layoutX="169.0" layoutY="222.0" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="51.0" />
+            <Button fx:id="oblicz" layoutX="364.0" layoutY="160.0" mnemonicParsing="false" onAction="#oblicz" prefHeight="25.0" prefWidth="106.0" text="Oblicz" AnchorPane.rightAnchor="50.0" />
+            <TextField fx:id="wzrost" layoutX="170.0" layoutY="16.0" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="51.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" AnchorPane.rightAnchor="14.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="BMI-Body Mass Index" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <AnchorPane prefHeight="303.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
