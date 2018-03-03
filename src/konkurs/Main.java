@@ -62,7 +62,7 @@ public class Main extends Application {
 		
 		AppManager.applyMain(this);
 		UpdateManager.applyBehaviour(updateScene);
-				
+
 		Task<Void> updateTask = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
@@ -184,9 +184,7 @@ public class Main extends Application {
 	public void buildPlanEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Plan.fxml"));
-		
 		GridPane pane = loader.load();
-		
 		mainStage.setScene(new Scene(pane));
 	}
 
