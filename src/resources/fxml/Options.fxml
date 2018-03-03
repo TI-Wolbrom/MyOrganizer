@@ -52,7 +52,7 @@
                               <ColorAdjust brightness="0.79" contrast="0.9" hue="0.71" saturation="0.48" />
                            </effect>
                         </Label>
-                        <CheckBox mnemonicParsing="false" text="Automatyczne aktualizacje" fx:id="chbSettings">
+                        <CheckBox mnemonicParsing="false" text="Automatyczne aktualizacje" onAction="#onUpdateCheckboxEvent" fx:id="chbSettings">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></CheckBox>

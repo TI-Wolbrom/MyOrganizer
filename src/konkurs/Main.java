@@ -52,11 +52,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		mainStage = primaryStage;
 
-		mainStage.getIcons()
-				.add(new Image(this.getClass().getResourceAsStream("/resources/fxml/other_icons/appicon.png")));
+		mainStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/resources/fxml/other_icons/appicon.png")));
 
-		updateScene = new UpdateScene(new Parent() {
-		}, this.mainStage);
+		updateScene = new UpdateScene(new Parent() {}, this.mainStage);
 		updateScene.build();
 
 		mainStage.setScene(updateScene);
