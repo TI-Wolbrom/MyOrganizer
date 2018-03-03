@@ -1,6 +1,8 @@
 package konkurs;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -9,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -22,13 +26,23 @@ public class Main extends Application {
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	private Stage mainStage;
-	
+
+    // --------------------------------------------------------------------------------------------------------------------
+
 	private UpdateScene updateScene;
-	
+
+    // --------------------------------------------------------------------------------------------------------------------
+
 	private Scene sceneMain;
-	
+
+    // --------------------------------------------------------------------------------------------------------------------
+
 	private Thread loadingThread;
-	
+
+    // --------------------------------------------------------------------------------------------------------------------
+
+	private static Settings settings;
+
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	
@@ -38,7 +52,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		mainStage = primaryStage;
-		
+
+		mainStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/resources/fxml/other_icons/appicon.png")));
+
 		updateScene = new UpdateScene(new Parent() {}, this.mainStage);
 		updateScene.build();
 		
@@ -116,7 +132,7 @@ public class Main extends Application {
 		
 		mainStage.hide();
 		
-		mainStage.setTitle("[My Organizer] by 3TI Wolbrom");
+		mainStage.setTitle("MyOrganizer");
 		mainStage.setResizable(true);
 		mainStage.setWidth(800);
 		mainStage.setHeight(600);
@@ -135,10 +151,6 @@ public class Main extends Application {
 		
 		// Uruchamiamy TaskManagera
 		TaskManager.initialize();
-	
-		//LocalDateTime ldtNow = LocalDateTime.now();
-		//TestTask tt = new TestTask(LocalDateTime.of(ldtNow.getYear(), ldtNow.getMonth(), ldtNow.getDayOfMonth(), ldtNow.getHour(), ldtNow.getMinute(), ldtNow.getSecond()));
-		//TaskManager.exportTaskToFile(tt);
 	}
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -177,7 +189,19 @@ public class Main extends Application {
 		
 		mainStage.setScene(new Scene(pane));
 	}
-	
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny ustawien
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildSettings() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Options.fxml"));
+
+		AnchorPane pane = loader.load();
+
+		mainStage.setScene(new Scene(pane));
+	}
+
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda sluzy do przelaczenia na scene glowna
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -190,7 +214,35 @@ public class Main extends Application {
 	public Stage getMainStage() {
 		return mainStage;
 	}
-	
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+
+	public void setSettings(Settings settings) {
+		this.settings = settings;
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+
+	public Settings getSettings() {
+		return settings;
+	}
+
+    // -----------------------------------------------------------------------------------------------------------------------------
+
+    public static void processSettings(String action) throws IOException, ClassNotFoundException {
+	    if(action.toLowerCase().equals("load")) {
+            if (Files.exists(Paths.get("data/settings.dat"))) {
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/settings.dat"));
+                settings = (Settings) ois.readObject();
+                ois.close();
+            } else settings = new Settings();
+        } else if(action.toLowerCase().equals("save")) {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/settings.dat"));
+            oos.writeObject(settings);
+            oos.close();
+        } else return;
+    }
+
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Metoda main
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -202,14 +254,16 @@ public class Main extends Application {
 			}
 
 			Utils.lockInstance();
-			
+
+			// Wczytywanie ustawien
+			processSettings("load");
+
 			// Testowanie (WIP)
 			ResourceManager.create();
 			ResourceManager.addResource("app.name", "MyOrganizer by 3TI Wolbrom".getBytes());
-			
-			// Jezeli chcemy aby nasz program uruchamial sie szybciej
-			// polecam ustawic ta opcje na false
-			UpdateManager.allowUpdate(UpdateManager.allowsUpdate());
+
+			// Zalecam wylaczyc ta opcje, gdy grzebiemy w kodzie
+			UpdateManager.allowUpdate(settings.updatesEnabled);
 			
 			try {
 				UpdateManager.initialize();

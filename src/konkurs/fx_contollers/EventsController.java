@@ -30,9 +30,16 @@ public class EventsController {
     @FXML
     private TreeView<String> trEvents;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     private TreeItem<String> trEventsRoot; // NOT FXML
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private boolean editMode;
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private Task taskInEdit = null;
     
 	// --------------------------------------------------------------------------------------------------------------------
@@ -40,36 +47,58 @@ public class EventsController {
     @FXML
     private TextField txtEventName;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private TextField txtEventDescription;
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
     private TextField txtEventTime;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private DatePicker txtEventDate;
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
     private CheckBox chbEventDisabled;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private CheckBox chbShowMessage;
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private TextArea txtMessageToShow;
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
     private Button btnNewEvent;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnEditEvent;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnSaveAll;
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnRemoveEvent;
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnReturn;
     
@@ -90,8 +119,10 @@ public class EventsController {
     @FXML
     public void onBtnEditEvent(ActionEvent event) {
     	if(taskInEdit == null) {
-	    	setTaskInEdit(new Task());
-	    	applyFor(TaskManager.getTaskCollection().getTaskByTaskName(trEvents.getSelectionModel().getSelectedItem().getValue()));
+	    	Task selectedTask = TaskManager.getTaskCollection().getTaskByTaskName(trEvents.getSelectionModel().getSelectedItem().getValue());
+
+	    	setTaskInEdit(selectedTask);
+	    	applyFor(selectedTask);
 	    	
 	    	btnNewEvent.setText("Zastosuj");
 	    	
@@ -124,7 +155,14 @@ public class EventsController {
     		if(isEditMode()) {
     			Task nowTaskCp = taskInEdit.copy();
     			saveTaskFromFields();
-    			
+
+    			updateEventsVisual();
+    			clearFields();
+
+    			/*btnNewEvent.setText("Nowe wydarzenie");
+    			setEditMode(false);
+    			setTaskInEdit(null);*/
+
     			boolean same = taskInEdit.getTaskName().equalsIgnoreCase(nowTaskCp.getTaskName());
     			if(same) {  			
     				TaskManager.updateTask(taskInEdit);
@@ -150,7 +188,6 @@ public class EventsController {
             			setEditMode(false);			
             			setTaskInEdit(null);
     				} else {
-    					    					
     					btnNewEvent.setText("Nowe wydarzenie");
     					setEditMode(false);
     					setTaskInEdit(null);
@@ -163,14 +200,14 @@ public class EventsController {
 	    		// Tworzymy nowe wydarzenie/zadanie za pomoca TaskManager.
 	    		// Jezeli nie uda nam sie utworzyc tego wydarzenia/zadania (bo np. juz istnieje)
 	    		// to wypisujemy blad, ze wydarzenie jest juz stworzone z ta data.
-	    		Task t = null;
-	    		
+	    		boolean result = false;
+
 	    		if(chbShowMessage.isSelected())
-	    			t = new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt);
+					result = TaskManager.createTask(new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt));
 	    		else
-	    			t = new Task(txtEventName.getText(), txtEventDescription.getText(), ldt);
+					result = TaskManager.createTask(new Task(txtEventName.getText(), txtEventDescription.getText(), ldt));
 	    		
-	    		if(TaskManager.createTask(t)) {
+	    		if(result) {
 	        		// Dodajemy do drzewka z wydarzeniami
 	        		trEventsRoot.getChildren().add(new TreeItem<String>(txtEventName.getText()));
 	        		
@@ -250,7 +287,9 @@ public class EventsController {
 			}
     	}
     }
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private void saveTaskFromFields() {
     	taskInEdit.setTaskName(txtEventName.getText());
     	taskInEdit.setTaskDescription(txtEventDescription.getText());
@@ -261,7 +300,9 @@ public class EventsController {
     		at.setMessage(txtMessageToShow.getText());
     	}
     }
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private void clearFields() {
     	txtEventName.setText("");
     	txtEventDescription.setText("");
@@ -272,17 +313,25 @@ public class EventsController {
     	chbShowMessage.setSelected(false);
     }
 
+    // --------------------------------------------------------------------------------------------------------------------
+
 	public boolean isEditMode() {
 		return editMode;
 	}
+
+    // --------------------------------------------------------------------------------------------------------------------
 
 	public void setEditMode(boolean editMode) {
 		this.editMode = editMode;
 	}
 
+    // --------------------------------------------------------------------------------------------------------------------
+
 	public Task getTaskInEdit() {
 		return taskInEdit;
 	}
+
+    // --------------------------------------------------------------------------------------------------------------------
 
 	public void setTaskInEdit(Task taskInEdit) {
 		this.taskInEdit = taskInEdit;

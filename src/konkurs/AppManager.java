@@ -1,12 +1,13 @@
 package konkurs;
 
+import konkurs.fx.dialogs.DialogHelper;
 import konkurs.taskmodules.impl.TaskManager;
 
 public class AppManager {
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
-	public static final String VERSION = "0.2.0";
+	public static final String VERSION = "0.3.5a";
 	public static String OS_NAME = System.getProperty("os.name").toLowerCase();
 	
 	// --------------------------------------------------------------------------------------------------------------------
@@ -20,12 +21,22 @@ public class AppManager {
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------
-	
+
+	// Tylko ta metoda powinna byc uzywana, gdy chcemy zamknac nasz program
+	// jest ona najbezpieczniejsza
 	public static void closeApp() {
 		// Wylaczajac nasz program nie zapominajmy
 		// o zamknieciu naszego TaskManagera
 		TaskManager.shutdown();
-		
+
+		// Zapisujemy ustawienia
+		try {
+			Main.processSettings("save");
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			DialogHelper.showExceptionDialog(ex);
+		}
+
 		// Zamykamy
 		AppManager.getAppInstance().getMainStage().close();
 	}

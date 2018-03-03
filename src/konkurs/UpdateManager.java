@@ -97,7 +97,26 @@ public class UpdateManager {
 			updateControl.onUpdateError();
 		}
 	}
-	
+
+	// --------------------------------------------------------------------------------------------------------------------
+
+	public static int updateRequired() throws Exception {
+		String result = Utils.getHTML(UPDATE_URL + UPDATE_URL_TARGET_SYNC);
+
+		if(updateTargetMd5 != null) {
+			if(!result.isEmpty()) {
+				if(updateTargetMd5.equals(result))
+					return 3;
+				else
+					return 1;
+			}
+			else
+				return 2;
+		}
+		else
+			return 0;
+	}
+
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	public static void exportTargetMD5ToFile(String fileName) throws NoSuchAlgorithmException, IOException {

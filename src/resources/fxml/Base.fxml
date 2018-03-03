@@ -38,12 +38,12 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Ustawienia">
               <items>
-                <MenuItem id="menuItemSettingsBase" mnemonicParsing="false" text="Ustawienia ogólne" />
+                <MenuItem id="menuItemSettingsBase" mnemonicParsing="false" onAction="#onMenuItemSettings" text="Ustawienia ogólne" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Pomoc">
             <items>
-                  <MenuItem id="menuItemCheckUpdates" mnemonicParsing="false" text="Sprawdź aktualizacje" />
+                  <MenuItem id="menuItemCheckUpdates" mnemonicParsing="false" onAction="#onMenuItemUpdate" text="Sprawdź aktualizacje" />
               <MenuItem id="menuItemAbout" fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="O programie" />
             </items>
           </Menu>
