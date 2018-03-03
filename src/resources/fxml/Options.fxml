@@ -12,8 +12,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
 
-<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-image: url(&quot;kzo.jpg&quot;);" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
+<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: linear-gradient(#FE2E2E, #FE2E2E, #FA5858, #FA5858, #FA5858, #FE2E2E, #FE2E2E)" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
    <children>
       <StackPane prefHeight="200.0" prefWidth="331.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,7 +33,15 @@
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <ChoiceBox fx:id="choiceBoxLang" prefWidth="150.0" />
+                              <ChoiceBox fx:id="choiceBoxLang" prefWidth="150.0">
+                                  <items>
+							        <FXCollections fx:factory="observableArrayList">
+							            <String fx:value="Polski" />
+							            <String fx:value="English" />
+							            <String fx:value="Deutsch" />
+							        </FXCollections>
+							    </items>
+                              </ChoiceBox>
                            </children>
                         </HBox>
                         <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="Po zmianie języka wymagany jest restart aplikacji." textFill="#f0f5f0" wrapText="true">
@@ -42,7 +52,7 @@
                               <ColorAdjust brightness="0.79" contrast="0.9" hue="0.71" saturation="0.48" />
                            </effect>
                         </Label>
-                        <CheckBox mnemonicParsing="false" text="Automatyczne aktualizacje">
+                        <CheckBox mnemonicParsing="false" text="Automatyczne aktualizacje" fx:id="chbSettings">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></CheckBox>
