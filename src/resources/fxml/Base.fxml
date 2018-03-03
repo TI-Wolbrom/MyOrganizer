@@ -31,7 +31,7 @@
             <items>
                   <MenuItem id="menuItemP1" fx:id="menuItemPlan" mnemonicParsing="false" onAction="#onMenuItemPlan" text="Mój plan lekcji" />
                   <MenuItem id="menuItemP2" fx:id="menuItemEvents" mnemonicParsing="false" onAction="#onMenuItemEvents" text="Moje wydarzenia" />
-                  <MenuItem id="menuItemP3" mnemonicParsing="false" styleClass="menuItemIc" text="Moja siłownia" />
+                  <MenuItem id="menuItemP3" fx:id="menuItemGym" mnemonicParsing="false" onAction="#onMenuItemGym" styleClass="menuItemIc" text="Moja siłownia" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem id="menuItemExit" fx:id="menuItemExit" mnemonicParsing="false" onAction="#onMenuItemExit" text="Wyjdź z programu" />
             </items>
