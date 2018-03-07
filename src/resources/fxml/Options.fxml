@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.collections.*?>
-<?import java.lang.String?>
 
-<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: linear-gradient(#FE2E2E, #FE2E2E, #FA5858, #FA5858, #FA5858, #FE2E2E, #FE2E2E)" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
+<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: linear-gradient(white, aqua, aqua, aqua, white)" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
    <children>
       <StackPane prefHeight="200.0" prefWidth="331.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Group>
                <children>
-                  <VBox prefHeight="200.0" prefWidth="335.0" spacing="10.0" style="-fx-background-color: red; -fx-border-color: black; -fx-border-width: 3;">
+                  <VBox prefHeight="200.0" prefWidth="335.0" spacing="10.0" style="-fx-border-color: black; -fx-border-width: 1.5; -fx-background-color: linear-gradient(white, gray, gray, white);">
                      <children>
                         <HBox prefHeight="30.0" prefWidth="304.0" spacing="10.0">
                            <children>
@@ -44,15 +43,12 @@
                               </ChoiceBox>
                            </children>
                         </HBox>
-                        <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="Po zmianie języka wymagany jest restart aplikacji." textFill="#f0f5f0" wrapText="true">
+                        <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="Po zmianie języka wymagany jest restart aplikacji." textFill="#eb0404" wrapText="true">
                            <font>
                               <Font name="Comic Sans MS Bold Italic" size="12.0" />
                            </font>
-                           <effect>
-                              <ColorAdjust brightness="0.79" contrast="0.9" hue="0.71" saturation="0.48" />
-                           </effect>
                         </Label>
-                        <CheckBox mnemonicParsing="false" text="Automatyczne aktualizacje" onAction="#onUpdateCheckboxEvent" fx:id="chbSettings">
+                        <CheckBox fx:id="chbSettings" mnemonicParsing="false" onAction="#onUpdateCheckboxEvent" text="Automatyczne aktualizacje">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></CheckBox>
