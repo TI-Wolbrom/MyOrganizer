@@ -45,7 +45,7 @@ public class MainController {
 
 	@FXML
 	private void initialize() {
-		lblVersion.setText(lblVersion.getText() + AppManager.VERSION);
+		lblVersion.setText(lblVersion.getText() + " " + AppManager.VERSION);
 
 		try {
 			TaskManager.loadFromFile();

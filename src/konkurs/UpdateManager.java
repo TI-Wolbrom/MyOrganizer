@@ -142,10 +142,10 @@ public class UpdateManager {
 			
 			FileOutputStream fos = new FileOutputStream("MyOrganizer-Update.jar");
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-			
 			fos.close();
 			
-			System.out.println("[UPDATE_PROCESS] Download done.");
+			updateControl.onUpdateComplete();
+			Thread.sleep(2000);
 			
 			System.out.println("[UPDATE_PROCESS] Applying update...");
 			
@@ -157,7 +157,7 @@ public class UpdateManager {
 					try {
 						Files.createDirectory(oldVersionsPath);
 					} catch(FileAlreadyExistsException ex) {
-						System.out.println("[UPDATE_PROCESS] Old Dir exist :D");
+						System.out.println("[UPDATE_PROCESS] Directory exist");
 					} catch (IOException ex) {
 						DialogHelper.showExceptionDialog((Exception)ex);
 						ex.printStackTrace();
@@ -182,8 +182,6 @@ public class UpdateManager {
 					}
 				}
 			});
-			
-			System.out.println("[UPDATE_PROCESS] All done!");
 		}
 	}
 	

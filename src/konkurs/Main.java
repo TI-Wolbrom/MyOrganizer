@@ -1,6 +1,11 @@
 package konkurs;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
@@ -12,15 +17,17 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import konkurs.fx.dialogs.DialogHelper;
@@ -46,7 +53,7 @@ public class Main extends Application {
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
-	private static ResourceBundle bundle;
+	public static ResourceBundle bundle;
 	
 	// --------------------------------------------------------------------------------------------------------------------
 
@@ -63,11 +70,8 @@ public class Main extends Application {
 
 		mainStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/resources/fxml/other_icons/appicon.png")));
 
-		updateScene = new UpdateScene(new Parent() {}, this.mainStage);
-		updateScene.build();
-
-		mainStage.setScene(updateScene);
-
+		buildLoadingScreen();
+		
 		AppManager.applyMain(this);
 		UpdateManager.applyBehaviour(updateScene);
 
@@ -82,7 +86,7 @@ public class Main extends Application {
 						Thread.sleep(1500);
 
 						// Przechodzenie do aktualizacji
-						UpdateManager.doUpdate();
+						UpdateManager.doUpdate();			
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -96,6 +100,8 @@ public class Main extends Application {
 				}
 
 				try {			
+					Thread.sleep(2000);
+					
 					// Wczytywanie plikow (fake)
 					updateScene.loadResources();
 					
@@ -143,6 +149,23 @@ public class Main extends Application {
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia okienka ladowania
+	// -----------------------------------------------------------------------------------------------------------------------------
+	private void buildLoadingScreen() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/First.fxml"));
+		loader.setResources(bundle);
+		
+		Pane pane = loader.load();
+		VBox vbox = (VBox) pane.getChildren().get(2);
+		
+		updateScene = new UpdateScene(pane, mainStage);
+		updateScene.transfer( (Label) vbox.getChildren().get(0), (Label) vbox.getChildren().get(1));
+		
+		mainStage.setScene(updateScene);
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda sluzy do stworzenia glownej sceny
 	// -----------------------------------------------------------------------------------------------------------------------------
 	private void buildMain() throws IOException {
@@ -156,7 +179,6 @@ public class Main extends Application {
 
 		mainStage.hide();
 
-		mainStage.setTitle("MyOrganizer | " + AppManager.VERSION + " | " + AppManager.OS_NAME);
 		mainStage.setResizable(true);
 		mainStage.setWidth(800);
 		mainStage.setHeight(600);
@@ -165,7 +187,7 @@ public class Main extends Application {
 		mainStage.setScene(sceneMain);
 
 		mainStage.show();
-
+		
 		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent event) {
