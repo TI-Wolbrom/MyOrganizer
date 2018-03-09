@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: linear-gradient(white, aqua, aqua, aqua, white)" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
+<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
    <children>
       <StackPane prefHeight="200.0" prefWidth="331.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Group>
                <children>
-                  <VBox prefHeight="200.0" prefWidth="335.0" spacing="10.0" style="-fx-border-color: black; -fx-border-width: 1.5; -fx-background-color: linear-gradient(white, gray, gray, white);">
+                  <VBox prefHeight="200.0" prefWidth="335.0" spacing="10.0" style="-fx-border-color: black; -fx-border-width: 1.5; -fx-background-color: linear-gradient(to bottom, rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%);">
                      <children>
                         <HBox prefHeight="30.0" prefWidth="304.0" spacing="10.0">
                            <children>
