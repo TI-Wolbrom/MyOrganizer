@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -64,24 +66,38 @@ public class Main extends Application {
 
 		Task<Void> updateTask = new Task<Void>() {
 			@Override
-			protected Void call() throws Exception {
-				System.out.println("[UPDATE_TASK] Thread ID: " + Thread.currentThread().getId() + " Name="
-						+ Thread.currentThread().getName());
+			protected Void call() {
+				System.out.println("[UPDATE_TASK] Thread ID: " + Thread.currentThread().getId() + " Name=" + Thread.currentThread().getName());
 
 				if (UpdateManager.allowsUpdate()) {
-					// Symulowanie czasu aktualizacji
-					Thread.sleep(1500);
+					try {
+						// Symulowanie czasu aktualizacji
+						Thread.sleep(1500);
 
-					// Przechodzenie do aktualizacji
-					UpdateManager.doUpdate();
+						// Przechodzenie do aktualizacji
+						UpdateManager.doUpdate();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setContentText("Nie udało się pobrać aktualizacji!\nSerwer nie odpowiada.");
+						alert.setTitle("Aktualizacja");
+						alert.showAndWait();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 
-				// Wczytywanie plikow (fake)
-				updateScene.loadResources();
-
-				// Dajemy jakis czas zeby zasymulowac
-				// wczytywanie plikow itp.
-				Thread.sleep(2000);
+				try {			
+					// Wczytywanie plikow (fake)
+					updateScene.loadResources();
+					
+					// Dajemy jakis czas zeby zasymulowac
+					// wczytywanie plikow itp.
+					Thread.sleep(2000);				
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
 				return null;
 			}
@@ -132,7 +148,7 @@ public class Main extends Application {
 
 		mainStage.hide();
 
-		mainStage.setTitle("MyOrganizer");
+		mainStage.setTitle("MyOrganizer | " + AppManager.VERSION + " | " + AppManager.OS_NAME);
 		mainStage.setResizable(true);
 		mainStage.setWidth(800);
 		mainStage.setHeight(600);
@@ -289,7 +305,7 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 
 	public void setSettings(Settings settings) {
-		this.settings = settings;
+		Main.settings = settings;
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------
@@ -300,20 +316,24 @@ public class Main extends Application {
 
 	// -----------------------------------------------------------------------------------------------------------------------------
 
-	public static void processSettings(String action) throws IOException, ClassNotFoundException {
+	public static void processSettings(String action) throws ClassNotFoundException {
 		if (action.toLowerCase().equals("load")) {
 			if (Files.exists(Paths.get("data/settings.dat"))) {
-				ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/settings.dat"));
-				settings = (Settings) ois.readObject();
-				ois.close();
+				try {
+					ObjectInputStream ois;
+					ois = new ObjectInputStream(new FileInputStream("data/settings.dat"));
+					settings = (Settings) ois.readObject();
+					ois.close();
+				} catch (FileNotFoundException e) {} catch (IOException e) {}
 			} else
 				settings = new Settings();
 		} else if (action.toLowerCase().equals("save")) {
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/settings.dat"));
-			oos.writeObject(settings);
-			oos.close();
-		} else
-			return;
+			try {
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/settings.dat"));
+				oos.writeObject(settings);
+				oos.close();
+			} catch (FileNotFoundException e) {} catch (IOException e) {}
+		} else return;
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------

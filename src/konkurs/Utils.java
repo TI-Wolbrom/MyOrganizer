@@ -55,18 +55,22 @@ public class Utils {
 		StringBuilder result = new StringBuilder();
 		URL url = new URL(urlStr);
 		
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("GET");
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-		
-		String line;
-		
-		while((line = br.readLine()) != null)
-			result.append(line);
-		
-		br.close();
-		
+		try {
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+			String line;
+			
+			while((line = br.readLine()) != null)
+				result.append(line);
+			
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	
 		return result.toString();
 	}
 	

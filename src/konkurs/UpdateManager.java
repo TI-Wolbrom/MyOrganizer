@@ -101,20 +101,23 @@ public class UpdateManager {
 	// --------------------------------------------------------------------------------------------------------------------
 
 	public static int updateRequired() throws Exception {
-		String result = Utils.getHTML(UPDATE_URL + UPDATE_URL_TARGET_SYNC);
-
-		if(updateTargetMd5 != null) {
-			if(!result.isEmpty()) {
-				if(updateTargetMd5.equals(result))
-					return 3;
-				else
-					return 1;
+		try {
+			String result = Utils.getHTML(UPDATE_URL + UPDATE_URL_TARGET_SYNC);
+			
+			if(updateTargetMd5 != null) {
+				System.out.println(result + " <==> " + updateTargetMd5);
+				
+				if(!result.isEmpty()) 
+				{
+					
+					if(updateTargetMd5.equals(result)) return 3;
+					else return 1;
+					
+				} else return 2;
 			}
-			else
-				return 2;
-		}
-		else
-			return 0;
+		} catch (IOException e) { return -1; }
+		
+		return 0;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
@@ -125,8 +128,6 @@ public class UpdateManager {
 		FileOutputStream fos = new FileOutputStream(fileName);
 		fos.write(md5.getBytes(), 0, md5.length());
 		fos.close();
-		
-		System.out.println("UpdateManager.exportTargetMD5ToFile() Export done");
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------

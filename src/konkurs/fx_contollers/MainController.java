@@ -134,41 +134,44 @@ public class MainController {
 
 	@FXML
 	public void onMenuItemUpdate(ActionEvent e) {
+		int result;
 		try {
-			int result = UpdateManager.updateRequired();
-
-			Alert alert = new Alert(Alert.AlertType.NONE);
-			alert.setTitle("Sprawdzanie aktualizacji...");
-			alert.setHeaderText(null);
-
-			switch (result) {
-			case 0:
-				alert.setAlertType(Alert.AlertType.INFORMATION);
-				alert.setContentText("Ta opcja jest niedostępna ze względu na uruchomiony tryb developera.");
-				break;
-			case 1:
-				alert.setAlertType(Alert.AlertType.INFORMATION);
-				alert.setContentText("Aktualizacja jest dostępna aby ją pobrać uruchom ponownie program.\nPamiętaj aby mieć włączone automatyczne aktualizacje!");
-				break;
-			case 2:
-				alert.setAlertType(Alert.AlertType.ERROR);
-				alert.setContentText("Nie można połączyć się z serwerem.");
-				break;
-			case 3:
-				alert.setAlertType(Alert.AlertType.INFORMATION);
-				alert.setContentText("Twoja wersja jest aktualna!");
-				break;
-			default:
-				alert.setAlertType(Alert.AlertType.WARNING);
-				alert.setContentText("Brak definicji z onMenuItemUpdate (default)");
-				break;
-			}
-
-			alert.showAndWait();
+			result = UpdateManager.updateRequired();
 		} catch (Exception ex) {
-			DialogHelper.showExceptionDialog(ex);
-			ex.printStackTrace();
-			AppManager.closeApp();
+			result = -1;
 		}
+
+		Alert alert = new Alert(Alert.AlertType.NONE);
+		alert.setTitle("Sprawdzanie aktualizacji...");
+		alert.setHeaderText(null);
+
+		switch (result) {
+		case 0:
+			alert.setAlertType(Alert.AlertType.INFORMATION);
+			alert.setContentText("Ta opcja jest niedostępna ze względu na uruchomiony tryb developera.");
+			break;
+		case 1:
+			alert.setAlertType(Alert.AlertType.INFORMATION);
+			alert.setContentText("Aktualizacja jest dostępna aby ją pobrać uruchom ponownie program.\nPamiętaj aby mieć włączone automatyczne aktualizacje!");
+			break;
+		case 2:
+			alert.setAlertType(Alert.AlertType.ERROR);
+			alert.setContentText("Nie można połączyć się z serwerem. [#2]");
+			break;
+		case 3:
+			alert.setAlertType(Alert.AlertType.INFORMATION);
+			alert.setContentText("Twoja wersja jest aktualna!");
+			break;
+		case -1:
+			alert.setAlertType(Alert.AlertType.ERROR);
+			alert.setContentText("Nie można połączyć się z serwerem. [#-1]");
+			break;
+		default:
+			alert.setAlertType(Alert.AlertType.WARNING);
+			alert.setContentText("Brak definicji z onMenuItemUpdate (default)");
+			break;
+		}
+
+		alert.showAndWait();
 	}
 }
