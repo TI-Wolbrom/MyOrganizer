@@ -24,7 +24,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="304.0" spacing="10.0">
                            <children>
-                              <Label text="Język interfejsu:">
+                              <Label text="%options.interface">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -43,16 +43,16 @@
                               </ChoiceBox>
                            </children>
                         </HBox>
-                        <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="Po zmianie języka wymagany jest restart aplikacji." textFill="#eb0404" wrapText="true">
+                        <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="%options.interfaceNote" textFill="#eb0404" wrapText="true">
                            <font>
                               <Font name="Comic Sans MS Bold Italic" size="12.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="chbSettings" mnemonicParsing="false" onAction="#onUpdateCheckboxEvent" text="Automatyczne aktualizacje">
+                        <CheckBox fx:id="chbSettings" mnemonicParsing="false" onAction="#onUpdateCheckboxEvent" text="%options.autoUpdates">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></CheckBox>
-                        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onButtonReturn" text="Wróć do menu">
+                        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onButtonReturn" text="%options.buttonReturn">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>

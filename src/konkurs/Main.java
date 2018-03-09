@@ -4,6 +4,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -41,6 +44,10 @@ public class Main extends Application {
 
 	private Thread loadingThread;
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
+	private static ResourceBundle bundle;
+	
 	// --------------------------------------------------------------------------------------------------------------------
 
 	private static Settings settings;
@@ -141,6 +148,7 @@ public class Main extends Application {
 	private void buildMain() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Base.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
@@ -283,7 +291,8 @@ public class Main extends Application {
 	public void buildSettings() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Options.fxml"));
-
+		loader.setResources(bundle);
+		
 		AnchorPane pane = loader.load();
 
 		mainStage.setScene(new Scene(pane));
@@ -351,10 +360,14 @@ public class Main extends Application {
 			// Wczytywanie ustawien
 			processSettings("load");
 
-			// Testowanie (WIP)
-			ResourceManager.create();
-			ResourceManager.addResource("app.name", "MyOrganizer by 3TI Wolbrom".getBytes());
-
+			switch (settings.langInterface) 
+			{
+				case PL: bundle = ResourceBundle.getBundle("Interface", new Locale("PL")); break;
+				case EN: bundle = ResourceBundle.getBundle("Interface", new Locale("EN")); break;
+				case DE: bundle = ResourceBundle.getBundle("Interface", new Locale("DE")); break;
+				default: bundle = ResourceBundle.getBundle("Interface", new Locale("PL")); break;
+			}
+			
 			// Zalecam wylaczyc ta opcje, gdy grzebiemy w kodzie
 			UpdateManager.allowUpdate(settings.updatesEnabled);
 
