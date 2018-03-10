@@ -1,27 +1,14 @@
-#menuItemCheckUpdates > .label {
-	-fx-graphic: url("menu_icons/globe.png");
-}
-
-#menuItemAbout > .label {
-	-fx-graphic: url("menu_icons/alert.png");
-}
-
-#menuItemP1 > .label {
-	-fx-graphic: url("menu_icons/calendar.png");
-}
-
-#menuItemP2 > .label {
-	-fx-graphic: url("menu_icons/event.png");
-}
-
-#menuItemP3 > .label {
-	-fx-graphic: url("menu_icons/dumbbell.png");
-}
-
-#menuItemExit > .label {
-	-fx-graphic: url("menu_icons/cancel.png");
-}
-
-#menuItemSettingsBase > .label {
-	-fx-graphic: url("menu_icons/cogwheel.png");
-}
+#menuItemCheckUpdates > .label { -fx-graphic: url("menu_icons/globe.png"); }
+#menuItemCheckUpdates .accelerator-text { -fx-graphic: none; }
+#menuItemAbout > .label { -fx-graphic: url("menu_icons/alert.png"); }
+#menuItemAbout .accelerator-text { -fx-graphic: none; }
+#menuItemP1 > .label { -fx-graphic: url("menu_icons/calendar.png"); }
+#menuItemP1 .accelerator-text { -fx-graphic: none; }
+#menuItemP2 > .label { -fx-graphic: url("menu_icons/event.png"); }
+#menuItemP2 .accelerator-text { -fx-graphic: none; }
+#menuItemP3 > .label { -fx-graphic: url("menu_icons/dumbbell.png"); }
+#menuItemP3 .accelerator-text { -fx-graphic: none; }
+#menuItemExit > .label { -fx-graphic: url("menu_icons/cancel.png"); }
+#menuItemExit .accelerator-text { -fx-graphic: none; }
+#menuItemSettingsBase > .label { -fx-graphic: url("menu_icons/cogwheel.png"); }
+#menuItemSettingsBase .accelerator-text { -fx-graphic: none; }

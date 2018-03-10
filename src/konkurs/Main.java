@@ -173,7 +173,7 @@ public class Main extends Application {
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Base.fxml"));
 		loader.setResources(bundle);
 
-		BorderPane pane = loader.load();
+		StackPane pane = loader.load();
 
 		sceneMain = new Scene(pane);
 
