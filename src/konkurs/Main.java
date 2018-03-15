@@ -240,7 +240,7 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildGymEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym2.fxml"));
+		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym.fxml"));
 
 		BorderPane pane = loader.load();
 
