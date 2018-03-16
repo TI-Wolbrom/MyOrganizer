@@ -36,7 +36,7 @@ public class PlanController {
 	
 	ObservableList<RecordPlan> recordsFromFile = FXCollections.observableArrayList();
 	ObservableList<RecordPlan> allRecords;
-	File save = new File("res/dataP.bin");
+	File save = new File("data/dataP.bin");
 	
 	// --------------------------------------------------------------------------------------------------------------------	
 	
@@ -153,7 +153,7 @@ public class PlanController {
 
     @FXML
     void onBtnSaveChanges(ActionEvent event) {
-    	savePlan("res/dataP.bin");
+    	savePlan("data/dataP.bin");
     }
     
 	// DODAWANIE NOWEGO RZÊDU DO TABELI
@@ -224,7 +224,7 @@ public class PlanController {
 				e.printStackTrace();
 			}
 		}else{
-			tableView.setItems(readPlan("res/dataP.bin"));
+			tableView.setItems(readPlan("data/dataP.bin"));
 		}
 		// UMO¯LIWIENIE EDYTOWANIA
 		
