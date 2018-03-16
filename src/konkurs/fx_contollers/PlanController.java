@@ -1,5 +1,6 @@
 package konkurs.fx_contollers;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -35,6 +36,7 @@ public class PlanController {
 	
 	ObservableList<RecordPlan> recordsFromFile = FXCollections.observableArrayList();
 	ObservableList<RecordPlan> allRecords;
+	File save = new File("res/dataP.bin");
 	
 	// --------------------------------------------------------------------------------------------------------------------	
 	
@@ -188,7 +190,6 @@ public class PlanController {
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	public void initialize() {
-		
 //		try {
 //			temp = Files.createTempFile("records", "res");
 //		} catch (IOException e) {
@@ -212,9 +213,19 @@ public class PlanController {
 		tabColumn6.setCellValueFactory(new PropertyValueFactory<RecordPlan, String>("valueD5"));
 		
 		// WCZYTYWANIE DO KOLUMN
-		
-		tableView.setItems(readPlan("res/dataP.bin"));
 
+		if(!save.exists()){
+			try {
+				save.createNewFile();
+				RecordPlan newRecordPlan = new RecordPlan();
+				tableView.getItems().add(newRecordPlan);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			tableView.setItems(readPlan("res/dataP.bin"));
+		}
 		// UMO¯LIWIENIE EDYTOWANIA
 		
 		tableView.setEditable(true);
