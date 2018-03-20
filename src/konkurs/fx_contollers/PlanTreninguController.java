@@ -19,6 +19,19 @@ public class PlanTreninguController {
 		}
 		
 	}
+	
+	@FXML
+	public void viewPlan(){
+		try {
+			AppManager.getAppInstance().buildPlanTView();
+		} catch (Exception ex) {
+			DialogHelper.showExceptionDialog(ex);
+			ex.printStackTrace();
+			AppManager.closeApp();
+		}
+		
+	}
+
 
    @FXML
    public void onBtnReturn(ActionEvent event) {

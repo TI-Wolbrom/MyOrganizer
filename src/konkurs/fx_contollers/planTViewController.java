@@ -1,8 +1,14 @@
 package konkurs.fx_contollers;
 
 import javafx.scene.control.Label;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+
+import java.io.BufferedReader;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import konkurs.AppManager;
 import konkurs.fx.dialogs.DialogHelper;
 
-public class addPlanTController {
+public class planTViewController {
 	
 	private int i = 1;
 	
@@ -23,9 +29,6 @@ public class addPlanTController {
 	private String czassText;
 	
 	private String[][] tab = new String[250][3];
-	
-	public static String nazwaPlanu;
-	
 	
 	@FXML
 	private GridPane grid;
@@ -51,10 +54,23 @@ public class addPlanTController {
 	}
 
 	@FXML
-	public void dodaj(ActionEvent event) {
-		cwiczText = cwicz.getText();
-		powtText = powt.getText();
-		czassText = czas.getText();
+	public void initialize() throws IOException {
+
+//		Scanner odczyt = new Scanner("gym_data/plany_treningowe/123.txt");
+//		StringTokenizer token;		
+//		while(odczyt.hasNextLine()) {
+//			token=new StringTokenizer(odczyt.nextLine()," ");
+//			while(token.hasMoreElements()) {
+//				System.out.println(token.nextToken());
+//			}
+//		}
+//		
+//		
+//		
+//		String[][] tab=new String[250][3];
+//		
+//		
+//		
 		Label cwiczenie = new Label();
 		Label powtorz = new Label();
 		Label czass = new Label();
@@ -65,29 +81,12 @@ public class addPlanTController {
 		powtorz.setMinSize(136, 20);
 		czass.setMinSize(117, 20);
 		
-		tab[i][0]=cwiczText;
-		tab[i][1]=powtText;
-		tab[i][2]=czassText;
-		
-		if(cwiczText.isEmpty()) {
-			
-		}else{		
 		cwiczenie.setText(cwiczText);
 		powtorz.setText(powtText);
 		czass.setText(czassText);
 		grid.add(cwiczenie, 0, i);
 		grid.add(powtorz, 1, i);
 		grid.add(czass, 2, i);
-		i++;
-		}
 	}
-	@FXML
-	public void zapisz(ActionEvent event) throws FileNotFoundException {
-		nazwaPlanu=nazwa.getText();
-		PrintWriter zapis = new PrintWriter("gym_data/plany_treningowe/"+nazwaPlanu+".txt");
-		for(int x=1;x<=i-1;x++) {
-			zapis.println(tab[x][0]+" "+tab[x][1]+" "+tab[x][2]);
-		}
-	    zapis.close();
-	}
+
 }

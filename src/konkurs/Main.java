@@ -242,6 +242,20 @@ public class Main extends Application {
 		mainStage.setScene(new Scene(pane));
 	}
 	
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny BMI
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildPlanTView() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/planTView.fxml"));
+		
+		BorderPane pane = loader.load();
+		
+		mainStage.setScene(new Scene(pane));
+	}
+	
+	
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda sluzy do stworzenia sceny LBM
 	// -----------------------------------------------------------------------------------------------------------------------------

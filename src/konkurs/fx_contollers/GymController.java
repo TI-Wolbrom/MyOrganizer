@@ -1,12 +1,7 @@
 package konkurs.fx_contollers;
 
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,7 +13,7 @@ import konkurs.fx.dialogs.DialogHelper;
 
 public class GymController {
 	
-	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	LocalDate dataDzis = LocalDate.now();
 	
     @FXML
@@ -39,10 +34,8 @@ public class GymController {
 
     @FXML
     public void initialize(){
-    	grid.add(new CheckBox("AAA"), 0, 0);
+    	grid.add(new CheckBox(""), 0, 0);
     	data.setText(dtf.format(dataDzis));
-    	
-    	
     }
     
 	@FXML

@@ -45,8 +45,9 @@
    <right>
       <AnchorPane prefHeight="303.0" prefWidth="184.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addPlan" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPlan" prefHeight="25.0" prefWidth="130.0" text="Dodaj plan trenigowy" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPlan" prefHeight="25.0" prefWidth="130.0" text="Dodaj plan trenigowy" />
             <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Usuń plan trenigowy" />
+            <Button layoutX="14.0" layoutY="98.0" mnemonicParsing="false" onAction="#viewPlan" prefHeight="25.0" prefWidth="130.0" text="Wyświetl plan" />
          </children>
       </AnchorPane>
    </right>
