@@ -219,6 +219,7 @@ public class PlanController {
 				save.createNewFile();
 				RecordPlan newRecordPlan = new RecordPlan();
 				tableView.getItems().add(newRecordPlan);
+		    	savePlan("data/dataP.bin");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
