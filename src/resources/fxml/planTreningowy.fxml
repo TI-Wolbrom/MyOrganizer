@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.PlanTreninguController">
+   <bottom>
+      <AnchorPane prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" AnchorPane.rightAnchor="14.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="Plany treningowe" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <AnchorPane prefHeight="303.0" prefWidth="26.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <Accordion prefHeight="303.0" prefWidth="369.0" BorderPane.alignment="CENTER">
+         <panes>
+            <TitledPane animated="false" prefHeight="338.0" prefWidth="390.0" text="Moje plany trenigowe">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Podstawowe plany trenigowe">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </TitledPane>
+         </panes>
+      </Accordion>
+   </center>
+   <right>
+      <AnchorPane prefHeight="303.0" prefWidth="184.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="addPlan" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPlan" prefHeight="25.0" prefWidth="130.0" text="Dodaj plan trenigowy" />
+            <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Usuń plan trenigowy" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

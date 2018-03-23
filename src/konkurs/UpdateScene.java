@@ -4,18 +4,23 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class UpdateScene extends Scene implements UpdateBehaviour {
 
+	// -----------------------------------------------------------------------------------------------------------------------------
+	
 	private Stage mainStage;
 	
-	private Label statusLabel;
-	private Label authorLabel;
-	private Label versionLabel;
+	// -----------------------------------------------------------------------------------------------------------------------------
+	
+	private Label status;
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	
+	private Label version;
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Konstruktor
@@ -24,49 +29,25 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 		super(root);
 		
 		this.mainStage = mainStage;
-	}
-	
-	// -----------------------------------------------------------------------------------------------------------------------------
-	// Ta metoda buduje scene
-	// -----------------------------------------------------------------------------------------------------------------------------
-	public void build() {
-		mainStage.setResizable(false);
-		mainStage.setTitle("Proszê czekaæ ...");
-		
-		VBox vbox = new VBox(20);
-		
-		HBox hbox = new HBox(25);
-		HBox hbox2 = new HBox(30);
-		
-		statusLabel = new Label();
-		statusLabel.setFont(new Font("Tahoma", 26));
-		
-		changeStatus("Sprawdzanie aktualizacji...");
-		
-		hbox.getChildren().add(statusLabel);
-		
-		versionLabel = new Label("Wersja programu: " + AppManager.VERSION);
-		versionLabel.setFont(new Font("Tahoma", 15));
-		
-		authorLabel = new Label("My Organizer by 3TI Wolbrom (2017-2018)");
-		authorLabel.setFont(new Font("Tahoma", 16));
-		
-		hbox2.getChildren().add(authorLabel);
-		hbox2.getChildren().add(versionLabel);
-		
-		vbox.getChildren().add(hbox);
-		vbox.getChildren().add(hbox2);
-		
-		setRoot(vbox);
+		this.mainStage.setTitle("MyOrganizer | " + AppManager.VERSION + " | " + AppManager.OS_NAME);
+		this.mainStage.setResizable(false);
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------
+	
+	public void transfer(Label statusLabel, Label versionLabel) {
+		this.status = statusLabel;
+		this.version = versionLabel;
+		this.version.setText(this.version.getText() + " " + AppManager.VERSION);
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	// Ta metoda zmienia status loadera
 	// -----------------------------------------------------------------------------------------------------------------------------
-	public void changeStatus(String status) {
+	public void changeStatus(String text) {
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() { statusLabel.setText(status); }
+			public void run() { status.setText(text); }
 		});
 	}
 	
@@ -74,34 +55,42 @@ public class UpdateScene extends Scene implements UpdateBehaviour {
 	// Ta metoda wczytuje pliki / ustawienia itp.
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void loadResources() {
-		changeStatus("£adowanie niezbêdnych plików...");
+		changeStatus(Main.bundle.getString("loader.loading"));
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public void onUpdateComplete() {
-		changeStatus("Aktualizacja zakoñczona!");
+		changeStatus(Main.bundle.getString("loader.updateDone"));
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateConnectionError() {
-		changeStatus("Wyst¹pi³ problem z po³¹czeniem!");
+		changeStatus(Main.bundle.getString("loader.connectionError"));
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateStarted() {
-		changeStatus("Rozpoczynam aktualizacje...");
+		changeStatus(Main.bundle.getString("loader.updateStarted"));
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void onUpdateNothingToUpdate() {
-		changeStatus("Wersja jest aktualna!");
+		changeStatus(Main.bundle.getString("loader.versionOk"));
 	}
+	
+	// --------------------------------------------------------------------------------------------------------------------
 
 	@Override
 	public void onUpdateError() {
-		changeStatus("Wyst¹pi³ problem z aktualizacj¹!");
+		changeStatus(Main.bundle.getString("loader.updateError"));
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------

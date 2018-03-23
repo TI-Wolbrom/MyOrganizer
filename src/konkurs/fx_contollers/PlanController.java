@@ -31,7 +31,6 @@ import konkurs.RecordPlan;
 
 public class PlanController {
 
-	
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	ObservableList<RecordPlan> recordsFromFile = FXCollections.observableArrayList();
@@ -108,7 +107,7 @@ public class PlanController {
     
     // --------------------------------------------------------------------------------------------------------------------
 
-	// EDYTOWANIE KOLUMN NA PODWÓJNYM KLIKNIÊCIU :D
+	// EDYTOWANIE KOLUMN NA PODWï¿½JNYM KLIKNIï¿½CIU :D
 	
 	public void changeHourCellEvent(CellEditEvent editedCell){
 		RecordPlan recordSelected = tableView.getSelectionModel().getSelectedItem();
@@ -156,7 +155,7 @@ public class PlanController {
     	savePlan("data/dataP.bin");
     }
     
-	// DODAWANIE NOWEGO RZÊDU DO TABELI
+	// DODAWANIE NOWEGO RZï¿½DU DO TABELI
     
 	@FXML
 	void onItemAddRow(){
@@ -167,7 +166,7 @@ public class PlanController {
 		tableView.getItems().add(newRecordPlan);
 	}
 	
-	// USUWANIE RZÊDÓW
+	// USUWANIE RZï¿½Dï¿½W
 	
 	@FXML
 	void onItemDeleteRow(){
@@ -180,22 +179,8 @@ public class PlanController {
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------
-
-//	private void KeyListener(KeyEvent e){
-//		if(e.getCode() == KeyCode.ESCAPE){
-//	    	AppManager.getAppInstance().switchToMain();
-//		}
-//	}
-	
-	// --------------------------------------------------------------------------------------------------------------------
 	
 	public void initialize() {
-//		try {
-//			temp = Files.createTempFile("records", "res");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		
 		
 		cmItemAddRow.setAccelerator(ctrlN);
 		cmItemSaveChanges.setAccelerator(ctrlS);
@@ -227,7 +212,7 @@ public class PlanController {
 		}else{
 			tableView.setItems(readPlan("data/dataP.bin"));
 		}
-		// UMO¯LIWIENIE EDYTOWANIA
+		// UMOï¿½LIWIENIE EDYTOWANIA
 		
 		tableView.setEditable(true);
 		tabColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -237,26 +222,13 @@ public class PlanController {
 		tabColumn5.setCellFactory(TextFieldTableCell.forTableColumn());
 		tabColumn6.setCellFactory(TextFieldTableCell.forTableColumn());
 		
-		// UMO¯LIWIENIE PICKNIÊCIA KILKU RZÊDÓW NARAZ
+		// UMOï¿½LIWIENIE PICKNIï¿½CIA KILKU RZï¿½Dï¿½W NARAZ
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------
-	
-//	public ObservableList<RecordPlan> getRecords(){
-//		record.add(new RecordPlan("8:00 - 8:45", "PR", "AS", "ZE", "K", "<3"));
-//		record.add(new RecordPlan("8:01 - 8:45", "PRa", "S", "ZE", "K", "<3"));
-//		record.add(new RecordPlan("8:02 - 8:45", "PRas", "", "ZE", "K", "<3"));
-//		record.add(new RecordPlan("8:03 - 8:45", "PRasz", "", "E", "K", "<3"));
-//		record.add(new RecordPlan("8:04 - 8:45", "PRasze", "", "", "K", "<3"));
-//		record.add(new RecordPlan("8:05 - 8:45", "PRaszek", "", "", "", "<3"));
-//		record.add(new RecordPlan("8:06 - 8:45", "PRaszek<", "", "", "", "3"));
-//		record.add(new RecordPlan("8:07 - 8:45", "PRaszek<3", "", "", "", ""));
-//		
-//		return record;
-//	}
-	
+		
 	private void savePlan(String file){
 		allRecords = tableView.getItems();
 		try {
@@ -272,7 +244,6 @@ public class PlanController {
 	}
 	
 	private static ObservableList<RecordPlan> readPlan(String file){
-		
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -290,10 +261,4 @@ public class PlanController {
 		
 		return FXCollections.emptyObservableList();
 	}
-	
-//	class EditingCell extends TableCell<RecordPlan, String>{
-//		
-//	}
-	
 }
-

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.EventsController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.EventsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,7 +24,7 @@
   </rowConstraints>
    <children>
       <TreeView fx:id="trEvents" prefHeight="200.0" prefWidth="200.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
          <children>
             <GridPane prefHeight="230.0" prefWidth="290.0">
               <columnConstraints>
@@ -54,12 +55,14 @@
                      <children>
                         <CheckBox fx:id="chbEventDisabled" mnemonicParsing="false" text="Wyłącz wydarzenie" />
                         <CheckBox fx:id="chbShowMessage" mnemonicParsing="false" text="Wyświetl komunikat" />
+                        <TextArea fx:id="txtMessageToShow" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
             </GridPane>
             <Button fx:id="btnNewEvent" mnemonicParsing="false" onAction="#onBtnNewEvent" prefHeight="25.0" prefWidth="133.0" text="Nowe wydarzenie" />
             <Button fx:id="btnEditEvent" mnemonicParsing="false" onAction="#onBtnEditEvent" prefHeight="25.0" prefWidth="133.0" text="Edytuj wydarzenie" />
+            <Button fx:id="btnRemoveEvent" mnemonicParsing="false" onAction="#onBtnRemoveEvent" prefHeight="25.0" prefWidth="133.0" text="Usuń wydarzenie" />
             <Button fx:id="btnSaveAll" mnemonicParsing="false" onAction="#onBtnSaveAll" prefHeight="25.0" prefWidth="133.0" text="Zapisz wszystko" />
             <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="133.0" text="Powrót" />
          </children>
