@@ -233,7 +233,10 @@ public class Main extends Application {
 	public void buildPlanEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Plan.fxml"));
+		loader.setResources(bundle);
+		
 		GridPane pane = loader.load();
+		
 		mainStage.setScene(new Scene(pane));
 	}
 

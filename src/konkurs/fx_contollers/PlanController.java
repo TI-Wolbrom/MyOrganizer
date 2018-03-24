@@ -71,12 +71,6 @@ public class PlanController {
     private MenuItem cmItemSaveChanges;
 
     @FXML
-    private MenuItem cmItemUndo;
-
-    @FXML
-    private MenuItem cmItemRedo;
-
-    @FXML
     private MenuItem cmItemAddRow;
 
     @FXML
@@ -90,16 +84,11 @@ public class PlanController {
 
     @FXML
     private Button btnSaveChanges;
-
-    @FXML
-    private Button btnReverseChanges;
     
     // --------------------------------------------------------------------------------------------------------------------
 
     // KOMBINACJE KLAWISZY
 
-    KeyCombination ctrlZ = new KeyCodeCombination(KeyCode.Z, KeyCodeCombination.SHORTCUT_DOWN);
-    KeyCombination ctrlY = new KeyCodeCombination(KeyCode.Y, KeyCodeCombination.SHORTCUT_DOWN);
     KeyCombination ctrlN = new KeyCodeCombination(KeyCode.N, KeyCodeCombination.SHORTCUT_DOWN);
     KeyCombination ctrlS = new KeyCodeCombination(KeyCode.S, KeyCodeCombination.SHORTCUT_DOWN);
     KeyCombination delete = new KeyCodeCombination(KeyCode.DELETE);
@@ -147,10 +136,6 @@ public class PlanController {
     }
 
     @FXML
-    void onBtnReverseChanges(ActionEvent event) {
-    }
-
-    @FXML
     void onBtnSaveChanges(ActionEvent event) {
     	savePlan("data/dataP.bin");
     }
@@ -184,8 +169,6 @@ public class PlanController {
 		
 		cmItemAddRow.setAccelerator(ctrlN);
 		cmItemSaveChanges.setAccelerator(ctrlS);
-		cmItemUndo.setAccelerator(ctrlZ);
-		cmItemRedo.setAccelerator(ctrlY);
 		cmItemReturn.setAccelerator(esc);
 		cmItemDeleteRow.setAccelerator(delete);
 		// USTAWIENIE KOLUMN :P

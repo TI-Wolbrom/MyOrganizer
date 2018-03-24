@@ -20,41 +20,39 @@
     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="289.0" minHeight="10.0" percentHeight="75.0" prefHeight="289.0" valignment="TOP" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="111.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="289.0" minHeight="10.0" percentHeight="85.0" prefHeight="289.0" valignment="TOP" vgrow="ALWAYS" />
+    <RowConstraints fillHeight="false" maxHeight="125.0" minHeight="10.0" percentHeight="10.0" prefHeight="125.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="tabColumn1" minWidth="25.0" onEditCommit="#changeHourCellEvent" prefWidth="100.0" sortable="false" text="Godziny" />
-          <TableColumn fx:id="tabColumn2" minWidth="25.0" onEditCommit="#changeValueD1CellEvent" prefWidth="100.0" sortable="false" text="Poniedziałek" />
-            <TableColumn fx:id="tabColumn3" minWidth="25.0" onEditCommit="#changeValueD2CellEvent" prefWidth="100.0" sortable="false" text="Wtorek" />
-            <TableColumn fx:id="tabColumn4" minWidth="25.0" onEditCommit="#changeValueD3CellEvent" prefWidth="100.0" sortable="false" text="Środa" />
-            <TableColumn fx:id="tabColumn5" minWidth="25.0" onEditCommit="#changeValueD4CellEvent" prefWidth="100.0" sortable="false" text="Czwartek" />
-            <TableColumn fx:id="tabColumn6" minWidth="25.0" onEditCommit="#changeValueD5CellEvent" prefWidth="100.0" sortable="false" text="Piątek" />
+          <TableColumn fx:id="tabColumn1" minWidth="25.0" onEditCommit="#changeHourCellEvent" prefWidth="100.0" sortable="false" text="%plan.hour" />
+          <TableColumn fx:id="tabColumn2" minWidth="25.0" onEditCommit="#changeValueD1CellEvent" prefWidth="100.0" sortable="false" text="%plan.monday" />
+            <TableColumn fx:id="tabColumn3" minWidth="25.0" onEditCommit="#changeValueD2CellEvent" prefWidth="100.0" sortable="false" text="%plan.tuesday" />
+            <TableColumn fx:id="tabColumn4" minWidth="25.0" onEditCommit="#changeValueD3CellEvent" prefWidth="100.0" sortable="false" text="%plan.wednesday" />
+            <TableColumn fx:id="tabColumn5" minWidth="25.0" onEditCommit="#changeValueD4CellEvent" prefWidth="100.0" sortable="false" text="%plan.thursday" />
+            <TableColumn fx:id="tabColumn6" minWidth="25.0" onEditCommit="#changeValueD5CellEvent" prefWidth="100.0" sortable="false" text="%plan.friday" />
         </columns>
          <contextMenu>
             <ContextMenu fx:id="PlanContextMenu">
               <items>
-                  <MenuItem fx:id="cmItemSaveChanges" mnemonicParsing="false" onAction="#onBtnSaveChanges" text="Zapisz zmiany" />
-                  <MenuItem fx:id="cmItemUndo" mnemonicParsing="false" text="Cofnij" />
-                  <MenuItem fx:id="cmItemRedo" mnemonicParsing="false" text="Przywróć" />
+                  <MenuItem fx:id="cmItemSaveChanges" mnemonicParsing="false" onAction="#onBtnSaveChanges" text="%plan.save" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                <MenuItem fx:id="cmItemAddRow" mnemonicParsing="false" onAction="#onItemAddRow" text="Dodaj rząd" />
-                  <MenuItem fx:id="cmItemDeleteRow" mnemonicParsing="false" onAction="#onItemDeleteRow" text="Usuń rząd" />
+                <MenuItem fx:id="cmItemAddRow" mnemonicParsing="false" onAction="#onItemAddRow" text="%plan.addRow" />
+                  <MenuItem fx:id="cmItemDeleteRow" mnemonicParsing="false" onAction="#onItemDeleteRow" text="%plan.delRow" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="cmItemReturn" mnemonicParsing="false" onAction="#onBtnReturn" text="Wróć" />
+                  <MenuItem fx:id="cmItemReturn" mnemonicParsing="false" onAction="#onBtnReturn" text="%plan.return" />
               </items>
             </ContextMenu>
          </contextMenu>
       </TableView>
       <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="569.0">
                <children>
                   <VBox prefHeight="100.0" prefWidth="319.0" spacing="10.0">
                      <children>
-                        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="28.0" prefWidth="84.0" text="Wróć">
+                        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="28.0" prefWidth="84.0" text="%plan.return">
                            <font>
                               <Font name="Tahoma" size="14.0" />
                            </font>
@@ -69,12 +67,7 @@
                   </VBox>
                   <VBox prefHeight="100.0" prefWidth="324.0" spacing="10.0">
                      <children>
-                        <Button fx:id="btnSaveChanges" mnemonicParsing="false" onAction="#onBtnSaveChanges" prefHeight="28.0" prefWidth="157.0" text="Zapisz zmiany">
-                           <font>
-                              <Font name="Tahoma" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnReverseChanges" mnemonicParsing="false" onAction="#onBtnReverseChanges" prefHeight="28.0" prefWidth="158.0" text="Cofnij zmiany">
+                        <Button fx:id="btnSaveChanges" mnemonicParsing="false" onAction="#onBtnSaveChanges" prefHeight="28.0" prefWidth="182.0" text="%plan.save">
                            <font>
                               <Font name="Tahoma" size="14.0" />
                            </font>
