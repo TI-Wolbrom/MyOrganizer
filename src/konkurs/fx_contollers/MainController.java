@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import konkurs.AppManager;
+import konkurs.Main;
 import konkurs.UpdateManager;
 import konkurs.fx.dialogs.DialogHelper;
 import konkurs.taskmodules.impl.TaskManager;
@@ -142,33 +143,33 @@ public class MainController {
 		}
 
 		Alert alert = new Alert(Alert.AlertType.NONE);
-		alert.setTitle("Sprawdzanie aktualizacji...");
+		alert.setTitle(Main.bundle.getString("updater.title"));
 		alert.setHeaderText(null);
 
 		switch (result) {
 		case 0:
 			alert.setAlertType(Alert.AlertType.INFORMATION);
-			alert.setContentText("Ta opcja jest niedostępna ze względu na uruchomiony tryb developera.");
+			alert.setContentText(Main.bundle.getString("updater.developerMode"));
 			break;
 		case 1:
 			alert.setAlertType(Alert.AlertType.INFORMATION);
-			alert.setContentText("Aktualizacja jest dostępna aby ją pobrać uruchom ponownie program.\nPamiętaj aby mieć włączone automatyczne aktualizacje!");
+			alert.setContentText(Main.bundle.getString("updater.updateReady"));
 			break;
 		case 2:
 			alert.setAlertType(Alert.AlertType.ERROR);
-			alert.setContentText("Nie można połączyć się z serwerem. [#2]");
+			alert.setContentText(Main.bundle.getString("updater.updateError") + " #2");
 			break;
 		case 3:
 			alert.setAlertType(Alert.AlertType.INFORMATION);
-			alert.setContentText("Twoja wersja jest aktualna!");
+			alert.setContentText(Main.bundle.getString("updater.versionOk"));
 			break;
 		case -1:
 			alert.setAlertType(Alert.AlertType.ERROR);
-			alert.setContentText("Nie można połączyć się z serwerem. [#-1]");
+			alert.setContentText(Main.bundle.getString("updater.updateError") + " #-1");
 			break;
 		default:
 			alert.setAlertType(Alert.AlertType.WARNING);
-			alert.setContentText("Brak definicji z onMenuItemUpdate (default)");
+			alert.setContentText("onMenuItemUpdate (default)");
 			break;
 		}
 

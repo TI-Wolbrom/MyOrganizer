@@ -23,7 +23,7 @@
       </Label>
       <VBox alignment="CENTER" layoutX="2.0" layoutY="267.0" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
          <children>
-            <Label text="Sprawdzanie aktualizacji...." textFill="#5feb27">
+            <Label text="%loader.checking" textFill="#5feb27">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>

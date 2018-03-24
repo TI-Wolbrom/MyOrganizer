@@ -8,18 +8,25 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map.Entry;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.HBox;
 import konkurs.AppManager;
+import konkurs.Main;
 import konkurs.fx.dialogs.DialogHelper;
 import konkurs.taskmodules.impl.AlertTask;
+import konkurs.taskmodules.impl.LogOffPCTask;
+import konkurs.taskmodules.impl.ShutdownPCTask;
 import konkurs.taskmodules.impl.Task;
 import konkurs.taskmodules.impl.TaskManager;
 
@@ -41,9 +48,9 @@ public class EventsController {
     // --------------------------------------------------------------------------------------------------------------------
 
     private Task taskInEdit = null;
-    
-	// --------------------------------------------------------------------------------------------------------------------
-    
+        
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private TextField txtEventName;
 
@@ -68,10 +75,10 @@ public class EventsController {
     private CheckBox chbEventDisabled;
 
     // --------------------------------------------------------------------------------------------------------------------
-
+    
     @FXML
-    private CheckBox chbShowMessage;
-
+    private ChoiceBox<String> chboxTaskType;
+    
     // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
@@ -105,11 +112,31 @@ public class EventsController {
 	// --------------------------------------------------------------------------------------------------------------------
 
     @FXML
+    private HBox controlMessage;
+
+	// --------------------------------------------------------------------------------------------------------------------
+    
+    @FXML
 	private void initialize() {
+    	chboxTaskType.getItems().add(Main.bundle.getString("events.taskType.show"));
+    	chboxTaskType.getItems().add(Main.bundle.getString("events.taskType.shutdown"));
+    	chboxTaskType.getItems().add(Main.bundle.getString("events.taskType.logoff"));
+    	
     	setEditMode(false);
     	
-    	trEventsRoot = new TreeItem<>("Zaplanowane wydarzenia");
+    	chboxTaskType.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+    		@Override
+    		public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+    			Number idx = 0;
+    		    			
+    			controlMessage.setDisable(newValue != idx);
+    		}
+		});
+    	
+    	trEventsRoot = new TreeItem<>(Main.bundle.getString("events.set"));
     	trEvents.setRoot(trEventsRoot);
+    	
+    	chboxTaskType.getSelectionModel().select(0);
     	
 		updateEventsVisual();
 	}
@@ -124,7 +151,7 @@ public class EventsController {
 	    	setTaskInEdit(selectedTask);
 	    	applyFor(selectedTask);
 	    	
-	    	btnNewEvent.setText("Zastosuj");
+	    	btnNewEvent.setText(Main.bundle.getString("events.applyEvent"));
 	    	
 	    	setEditMode(true);
 	    	btnEditEvent.setDisable(true);
@@ -158,13 +185,9 @@ public class EventsController {
 
     			updateEventsVisual();
     			clearFields();
-
-    			/*btnNewEvent.setText("Nowe wydarzenie");
-    			setEditMode(false);
-    			setTaskInEdit(null);*/
-
+    			
     			boolean same = taskInEdit.getTaskName().equalsIgnoreCase(nowTaskCp.getTaskName());
-    			if(same) {  			
+    			if(same) {
     				TaskManager.updateTask(taskInEdit);
 					
     				updateEventsVisual();
@@ -172,7 +195,7 @@ public class EventsController {
     				
     				onBtnSaveAll(null);
     				
-        			btnNewEvent.setText("Nowe wydarzenie");
+        			btnNewEvent.setText(Main.bundle.getString("events.newEvent"));
         			setEditMode(false);
         			setTaskInEdit(null);
     			} else {   				
@@ -184,14 +207,13 @@ public class EventsController {
 
         				onBtnSaveAll(null);
     					
-            			btnNewEvent.setText("Nowe wydarzenie");
+            			btnNewEvent.setText(Main.bundle.getString("events.newEvent"));
             			setEditMode(false);			
             			setTaskInEdit(null);
     				} else {
-    					btnNewEvent.setText("Nowe wydarzenie");
+    					btnNewEvent.setText(Main.bundle.getString("events.newEvent"));
     					setEditMode(false);
     					setTaskInEdit(null);
-    					System.out.println("Not possible");
     				}
     			}
 
@@ -201,24 +223,27 @@ public class EventsController {
 	    		// Jezeli nie uda nam sie utworzyc tego wydarzenia/zadania (bo np. juz istnieje)
 	    		// to wypisujemy blad, ze wydarzenie jest juz stworzone z ta data.
 	    		boolean result = false;
-
-	    		if(chbShowMessage.isSelected())
-					result = TaskManager.createTask(new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt));
-	    		else
-					result = TaskManager.createTask(new Task(txtEventName.getText(), txtEventDescription.getText(), ldt));
+	    		
+	    		switch(chboxTaskType.getSelectionModel().getSelectedIndex()) {
+		    		case 0: result = TaskManager.createTask(new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt)); break;
+		    		case 1: result = TaskManager.createTask(new ShutdownPCTask(txtEventName.getText(), txtEventDescription.getText(), ldt)); break;
+		    		case 2: result = TaskManager.createTask(new LogOffPCTask(txtEventName.getText(), txtEventDescription.getText(), ldt)); break;
+	    		}
 	    		
 	    		if(result) {
 	        		// Dodajemy do drzewka z wydarzeniami
 	        		trEventsRoot.getChildren().add(new TreeItem<String>(txtEventName.getText()));
 	        		
+	        		clearFields();
+	        		
 	        		// Zapisujemy do pliku
 	        		onBtnSaveAll(null);
 	    		} else {
-	    			DialogHelper.showDefaultDialog("Błąd!", "Wystąpił błąd!\nPrawdopodobnie podobne wydarzenie zostało już utworzone!\nStwórz inne wydarzenie aby dodać je do listy.");
+	    			DialogHelper.showDefaultDialog("Error!", Main.bundle.getString("events.errors.eventExist"));
 	    		}
     		}
     	} else {
-    		DialogHelper.showDefaultDialog("Uzupełnij wszystkie pola według schematu!", "Prosimy uzupełnić wszystkie pola według schematu!");
+    		DialogHelper.showDefaultDialog("Error!", Main.bundle.getString("events.errors.badRegularExpression"));
     	}
     }
 
@@ -276,13 +301,16 @@ public class EventsController {
     		txtEventDescription.setText(t.getTaskDescription());
     		txtEventTime.setText(t.getTaskDate().format(DateTimeFormatter.ISO_TIME));
     		txtEventDate.setValue(t.getTaskDate().toLocalDate());
-    		chbEventDisabled.setSelected(!t.isTaskEnabled());	
+    		chbEventDisabled.setSelected(!t.isTaskEnabled());
     		if (t instanceof AlertTask) {
 				AlertTask at = (AlertTask) t;
+				chboxTaskType.getSelectionModel().select(0);
 	    		txtMessageToShow.setText(at.getMessage());
-				chbShowMessage.setSelected(true);
-			} else {
-				chbShowMessage.setSelected(false);
+			} else if(t instanceof ShutdownPCTask) {
+				chboxTaskType.getSelectionModel().select(1);
+				txtMessageToShow.setText("");
+			} else if(t instanceof LogOffPCTask) {
+				chboxTaskType.getSelectionModel().select(2);
 				txtMessageToShow.setText("");
 			}
     	}
@@ -294,10 +322,18 @@ public class EventsController {
     	taskInEdit.setTaskName(txtEventName.getText());
     	taskInEdit.setTaskDescription(txtEventDescription.getText());
     	taskInEdit.setTaskEnabled(!chbEventDisabled.isSelected());
-    	taskInEdit.setTaskDate(LocalDateTime.of(txtEventDate.getValue(), LocalTime.parse(txtEventTime.getText())));  	
+    	taskInEdit.setTaskDate(LocalDateTime.of(txtEventDate.getValue(), LocalTime.parse(txtEventTime.getText())));
+    	
+		switch(chboxTaskType.getSelectionModel().getSelectedIndex()) {
+			case 0: taskInEdit = new AlertTask(taskInEdit.getTaskName(), taskInEdit.getTaskDescription(), txtMessageToShow.getText(), taskInEdit.getTaskDate()); break;
+			case 1: taskInEdit = new ShutdownPCTask(taskInEdit.getTaskName(), taskInEdit.getTaskDescription(), taskInEdit.getTaskDate()); break;
+			case 2: taskInEdit = new LogOffPCTask(taskInEdit.getTaskName(), taskInEdit.getTaskDescription(), taskInEdit.getTaskDate()); break;
+		}
+    	
     	if(taskInEdit instanceof AlertTask) {
     		AlertTask at = (AlertTask) taskInEdit;
     		at.setMessage(txtMessageToShow.getText());
+    		chboxTaskType.getSelectionModel().select(0);
     	}
     }
 
@@ -310,7 +346,7 @@ public class EventsController {
     	txtEventTime.setText("");
     	txtMessageToShow.setText("");
     	chbEventDisabled.setSelected(false);
-    	chbShowMessage.setSelected(false);
+    	chboxTaskType.getSelectionModel().select(0);
     }
 
     // --------------------------------------------------------------------------------------------------------------------

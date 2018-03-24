@@ -5,15 +5,15 @@ import java.time.LocalDateTime;
 
 import konkurs.AppManager;
 
-public class ShutdownPCTask extends Task {
+public class LogOffPCTask extends Task {
 
 	// --------------------------------------------------------------------------------------------------------------------
 
-	private static final long serialVersionUID = -302969787102664059L;
+	private static final long serialVersionUID = -6722081341475391315L;
 
 	// --------------------------------------------------------------------------------------------------------------------
 
-	public ShutdownPCTask(String taskName, String taskDesc, LocalDateTime dateTime) {
+	public LogOffPCTask(String taskName, String taskDesc, LocalDateTime dateTime) {
 		super(taskName, taskDesc, dateTime);
 	}
 
@@ -25,7 +25,7 @@ public class ShutdownPCTask extends Task {
 		if (AppManager.OS_NAME.indexOf("win") >= 0) {
 			try {
 				// Dla Windows
-				Runtime.getRuntime().exec("shutdown -s");
+				Runtime.getRuntime().exec("shutdown -l");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -33,11 +33,13 @@ public class ShutdownPCTask extends Task {
 				|| AppManager.OS_NAME.indexOf("aix") > 0) {
 			try {
 				// Dla Linux
-				Runtime.getRuntime().exec("shutdown -h now");
+				Runtime.getRuntime().exec("kill -9 -1");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
+	// --------------------------------------------------------------------------------------------------------------------
 
 }

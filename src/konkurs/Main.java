@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -219,8 +220,9 @@ public class Main extends Application {
 	public void buildEventsEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Events.fxml"));
-
-		GridPane pane = loader.load();
+		loader.setResources(bundle);
+		
+		SplitPane pane = loader.load();
 
 		mainStage.setScene(new Scene(pane));
 	}
@@ -372,9 +374,14 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
 		try {
-			if (args.length > 0 && args[0].equalsIgnoreCase("-export")) {
-				UpdateManager.exportTargetMD5ToFile("sync.txt");
-				System.exit(0);
+			if (args.length > 0) {
+				if(args[0].equalsIgnoreCase("-export")) {
+					UpdateManager.exportTargetMD5ToFile("sync.txt");
+					System.exit(0);
+				} else if(args[0].equalsIgnoreCase("-lock_fix")) {
+					Utils.unlockInstance();
+					System.exit(0);
+				}
 			}
 
 			Utils.lockInstance();
