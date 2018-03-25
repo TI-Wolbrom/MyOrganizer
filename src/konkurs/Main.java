@@ -32,7 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import konkurs.fx.dialogs.DialogHelper;
-import konkurs.taskmodules.impl.TaskManager;a
+import konkurs.taskmodules.impl.TaskManager;
 
 public class Main extends Application {
 
@@ -246,6 +246,7 @@ public class Main extends Application {
 	public void buildGymEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
@@ -258,6 +259,7 @@ public class Main extends Application {
 	public void buildCalcEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/calc.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
@@ -270,6 +272,7 @@ public class Main extends Application {
 	public void buildPlanTEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/planTreningowy.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
@@ -282,6 +285,7 @@ public class Main extends Application {
 	public void buildAddPlanTEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/addPlanT.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
@@ -294,6 +298,7 @@ public class Main extends Application {
 	public void buildBMIEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/BMI.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
@@ -306,6 +311,7 @@ public class Main extends Application {
 	public void buildPlanTView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/planTView.fxml"));
+		loader.setResources(bundle);
 		
 		BorderPane pane = loader.load();
 		
@@ -318,6 +324,7 @@ public class Main extends Application {
 	public void buildLBMEditor() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/LBM.fxml"));
+		loader.setResources(bundle);
 
 		BorderPane pane = loader.load();
 
