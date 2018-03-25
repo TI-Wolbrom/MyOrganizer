@@ -1,0 +1,5 @@
+bin/.gitignore
+sync.txt
+_Releases
+MyOrganizer.jar
+/bin/

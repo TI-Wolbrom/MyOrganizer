@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.SettingsController">
+   <children>
+      <StackPane prefHeight="200.0" prefWidth="331.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Group>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="335.0" spacing="10.0" style="-fx-border-color: black; -fx-border-width: 1.5; -fx-background-color: linear-gradient(to bottom, rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%);">
+                     <children>
+                        <HBox prefHeight="30.0" prefWidth="304.0" spacing="10.0">
+                           <children>
+                              <Label text="%options.interface">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="choiceBoxLang" prefWidth="150.0">
+                                  <items>
+							        <FXCollections fx:factory="observableArrayList">
+							            <String fx:value="Polski" />
+							            <String fx:value="English" />
+							            <String fx:value="Deutsch" />
+							        </FXCollections>
+							    </items>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                        <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="%options.interfaceNote" textFill="#eb0404" wrapText="true">
+                           <font>
+                              <Font name="Comic Sans MS Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="chbSettings" mnemonicParsing="false" onAction="#onUpdateCheckboxEvent" text="%options.autoUpdates">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></CheckBox>
+                        <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onButtonReturn" text="%options.buttonReturn">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="90.0" top="25.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </Group>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

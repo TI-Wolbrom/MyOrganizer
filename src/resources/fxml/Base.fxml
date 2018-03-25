@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="436.0" prefWidth="636.0" stylesheets="@Base.css" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.MainController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="168.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@other_icons/appicon.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label text="MyOrganizer">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="64.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblVersion" text="%main.version" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <MenuBar StackPane.alignment="TOP_LEFT">
+        <menus>
+          <Menu mnemonicParsing="false" text="%main.selectModule">
+            <items>
+                  <MenuItem id="menuItemP1" fx:id="menuItemPlan" mnemonicParsing="false" onAction="#onMenuItemPlan" text="%main.selectModule.lessonPlan">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="F1" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem id="menuItemP2" fx:id="menuItemEvents" mnemonicParsing="false" onAction="#onMenuItemEvents" text="%main.selectModule.eventsEditor">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="F2" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem id="menuItemP3" fx:id="menuItemGym" mnemonicParsing="false" onAction="#onMenuItemGym" styleClass="menuItemIc" text="%main.selectModule.gym">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="F3" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem id="menuItemExit" fx:id="menuItemExit" mnemonicParsing="false" onAction="#onMenuItemExit" text="%main.selectModule.exit">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="%main.settings">
+              <items>
+                <MenuItem id="menuItemSettingsBase" mnemonicParsing="false" onAction="#onMenuItemSettings" text="%main.settings.base">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="%main.help">
+            <items>
+                  <MenuItem id="menuItemCheckUpdates" mnemonicParsing="false" onAction="#onMenuItemUpdate" text="%main.help.updates">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+              <MenuItem id="menuItemAbout" fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="%main.help.about">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</StackPane>
