@@ -8,18 +8,25 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map.Entry;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.HBox;
 import konkurs.AppManager;
+import konkurs.Main;
 import konkurs.fx.dialogs.DialogHelper;
 import konkurs.taskmodules.impl.AlertTask;
+import konkurs.taskmodules.impl.LogOffPCTask;
+import konkurs.taskmodules.impl.ShutdownPCTask;
 import konkurs.taskmodules.impl.Task;
 import konkurs.taskmodules.impl.TaskManager;
 
@@ -30,57 +37,106 @@ public class EventsController {
     @FXML
     private TreeView<String> trEvents;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     private TreeItem<String> trEventsRoot; // NOT FXML
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private boolean editMode;
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private Task taskInEdit = null;
-    
-	// --------------------------------------------------------------------------------------------------------------------
-    
+        
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private TextField txtEventName;
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
     private TextField txtEventDescription;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private TextField txtEventTime;
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
     private DatePicker txtEventDate;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private CheckBox chbEventDisabled;
 
-    @FXML
-    private CheckBox chbShowMessage;
+    // --------------------------------------------------------------------------------------------------------------------
     
     @FXML
+    private ChoiceBox<String> chboxTaskType;
+    
+    // --------------------------------------------------------------------------------------------------------------------
+
+    @FXML
     private TextArea txtMessageToShow;
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     @FXML
     private Button btnNewEvent;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnEditEvent;
 
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnSaveAll;
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnRemoveEvent;
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     @FXML
     private Button btnReturn;
     
 	// --------------------------------------------------------------------------------------------------------------------
 
     @FXML
+    private HBox controlMessage;
+
+	// --------------------------------------------------------------------------------------------------------------------
+    
+    @FXML
 	private void initialize() {
+    	chboxTaskType.getItems().add(Main.bundle.getString("events.taskType.show"));
+    	chboxTaskType.getItems().add(Main.bundle.getString("events.taskType.shutdown"));
+    	chboxTaskType.getItems().add(Main.bundle.getString("events.taskType.logoff"));
+    	
     	setEditMode(false);
     	
-    	trEventsRoot = new TreeItem<>("Zaplanowane wydarzenia");
+    	chboxTaskType.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+    		@Override
+    		public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+    			Number idx = 0;
+    		    			
+    			controlMessage.setDisable(newValue != idx);
+    		}
+		});
+    	
+    	trEventsRoot = new TreeItem<>(Main.bundle.getString("events.set"));
     	trEvents.setRoot(trEventsRoot);
+    	
+    	chboxTaskType.getSelectionModel().select(0);
     	
 		updateEventsVisual();
 	}
@@ -90,10 +146,12 @@ public class EventsController {
     @FXML
     public void onBtnEditEvent(ActionEvent event) {
     	if(taskInEdit == null) {
-	    	setTaskInEdit(new Task());
-	    	applyFor(TaskManager.getTaskCollection().getTaskByTaskName(trEvents.getSelectionModel().getSelectedItem().getValue()));
+	    	Task selectedTask = TaskManager.getTaskCollection().getTaskByTaskName(trEvents.getSelectionModel().getSelectedItem().getValue());
+
+	    	setTaskInEdit(selectedTask);
+	    	applyFor(selectedTask);
 	    	
-	    	btnNewEvent.setText("Zastosuj");
+	    	btnNewEvent.setText(Main.bundle.getString("events.applyEvent"));
 	    	
 	    	setEditMode(true);
 	    	btnEditEvent.setDisable(true);
@@ -124,9 +182,12 @@ public class EventsController {
     		if(isEditMode()) {
     			Task nowTaskCp = taskInEdit.copy();
     			saveTaskFromFields();
+
+    			updateEventsVisual();
+    			clearFields();
     			
     			boolean same = taskInEdit.getTaskName().equalsIgnoreCase(nowTaskCp.getTaskName());
-    			if(same) {  			
+    			if(same) {
     				TaskManager.updateTask(taskInEdit);
 					
     				updateEventsVisual();
@@ -134,7 +195,7 @@ public class EventsController {
     				
     				onBtnSaveAll(null);
     				
-        			btnNewEvent.setText("Nowe wydarzenie");
+        			btnNewEvent.setText(Main.bundle.getString("events.newEvent"));
         			setEditMode(false);
         			setTaskInEdit(null);
     			} else {   				
@@ -146,15 +207,13 @@ public class EventsController {
 
         				onBtnSaveAll(null);
     					
-            			btnNewEvent.setText("Nowe wydarzenie");
+            			btnNewEvent.setText(Main.bundle.getString("events.newEvent"));
             			setEditMode(false);			
             			setTaskInEdit(null);
     				} else {
-    					    					
-    					btnNewEvent.setText("Nowe wydarzenie");
+    					btnNewEvent.setText(Main.bundle.getString("events.newEvent"));
     					setEditMode(false);
     					setTaskInEdit(null);
-    					System.out.println("Not possible");
     				}
     			}
 
@@ -163,25 +222,28 @@ public class EventsController {
 	    		// Tworzymy nowe wydarzenie/zadanie za pomoca TaskManager.
 	    		// Jezeli nie uda nam sie utworzyc tego wydarzenia/zadania (bo np. juz istnieje)
 	    		// to wypisujemy blad, ze wydarzenie jest juz stworzone z ta data.
-	    		Task t = null;
+	    		boolean result = false;
 	    		
-	    		if(chbShowMessage.isSelected())
-	    			t = new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt);
-	    		else
-	    			t = new Task(txtEventName.getText(), txtEventDescription.getText(), ldt);
+	    		switch(chboxTaskType.getSelectionModel().getSelectedIndex()) {
+		    		case 0: result = TaskManager.createTask(new AlertTask(txtEventName.getText(), txtEventDescription.getText(), txtMessageToShow.getText(), ldt)); break;
+		    		case 1: result = TaskManager.createTask(new ShutdownPCTask(txtEventName.getText(), txtEventDescription.getText(), ldt)); break;
+		    		case 2: result = TaskManager.createTask(new LogOffPCTask(txtEventName.getText(), txtEventDescription.getText(), ldt)); break;
+	    		}
 	    		
-	    		if(TaskManager.createTask(t)) {
+	    		if(result) {
 	        		// Dodajemy do drzewka z wydarzeniami
 	        		trEventsRoot.getChildren().add(new TreeItem<String>(txtEventName.getText()));
+	        		
+	        		clearFields();
 	        		
 	        		// Zapisujemy do pliku
 	        		onBtnSaveAll(null);
 	    		} else {
-	    			DialogHelper.showDefaultDialog("Błąd!", "Wystąpił błąd!\nPrawdopodobnie podobne wydarzenie zostało już utworzone!\nStwórz inne wydarzenie aby dodać je do listy.");
+	    			DialogHelper.showDefaultDialog("Error!", Main.bundle.getString("events.errors.eventExist"));
 	    		}
     		}
     	} else {
-    		DialogHelper.showDefaultDialog("Uzupełnij wszystkie pola według schematu!", "Prosimy uzupełnić wszystkie pola według schematu!");
+    		DialogHelper.showDefaultDialog("Error!", Main.bundle.getString("events.errors.badRegularExpression"));
     	}
     }
 
@@ -239,29 +301,44 @@ public class EventsController {
     		txtEventDescription.setText(t.getTaskDescription());
     		txtEventTime.setText(t.getTaskDate().format(DateTimeFormatter.ISO_TIME));
     		txtEventDate.setValue(t.getTaskDate().toLocalDate());
-    		chbEventDisabled.setSelected(!t.isTaskEnabled());	
+    		chbEventDisabled.setSelected(!t.isTaskEnabled());
     		if (t instanceof AlertTask) {
 				AlertTask at = (AlertTask) t;
+				chboxTaskType.getSelectionModel().select(0);
 	    		txtMessageToShow.setText(at.getMessage());
-				chbShowMessage.setSelected(true);
-			} else {
-				chbShowMessage.setSelected(false);
+			} else if(t instanceof ShutdownPCTask) {
+				chboxTaskType.getSelectionModel().select(1);
+				txtMessageToShow.setText("");
+			} else if(t instanceof LogOffPCTask) {
+				chboxTaskType.getSelectionModel().select(2);
 				txtMessageToShow.setText("");
 			}
     	}
     }
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private void saveTaskFromFields() {
     	taskInEdit.setTaskName(txtEventName.getText());
     	taskInEdit.setTaskDescription(txtEventDescription.getText());
     	taskInEdit.setTaskEnabled(!chbEventDisabled.isSelected());
-    	taskInEdit.setTaskDate(LocalDateTime.of(txtEventDate.getValue(), LocalTime.parse(txtEventTime.getText())));  	
+    	taskInEdit.setTaskDate(LocalDateTime.of(txtEventDate.getValue(), LocalTime.parse(txtEventTime.getText())));
+    	
+		switch(chboxTaskType.getSelectionModel().getSelectedIndex()) {
+			case 0: taskInEdit = new AlertTask(taskInEdit.getTaskName(), taskInEdit.getTaskDescription(), txtMessageToShow.getText(), taskInEdit.getTaskDate()); break;
+			case 1: taskInEdit = new ShutdownPCTask(taskInEdit.getTaskName(), taskInEdit.getTaskDescription(), taskInEdit.getTaskDate()); break;
+			case 2: taskInEdit = new LogOffPCTask(taskInEdit.getTaskName(), taskInEdit.getTaskDescription(), taskInEdit.getTaskDate()); break;
+		}
+    	
     	if(taskInEdit instanceof AlertTask) {
     		AlertTask at = (AlertTask) taskInEdit;
     		at.setMessage(txtMessageToShow.getText());
+    		chboxTaskType.getSelectionModel().select(0);
     	}
     }
-    
+
+    // --------------------------------------------------------------------------------------------------------------------
+
     private void clearFields() {
     	txtEventName.setText("");
     	txtEventDescription.setText("");
@@ -269,20 +346,28 @@ public class EventsController {
     	txtEventTime.setText("");
     	txtMessageToShow.setText("");
     	chbEventDisabled.setSelected(false);
-    	chbShowMessage.setSelected(false);
+    	chboxTaskType.getSelectionModel().select(0);
     }
+
+    // --------------------------------------------------------------------------------------------------------------------
 
 	public boolean isEditMode() {
 		return editMode;
 	}
 
+    // --------------------------------------------------------------------------------------------------------------------
+
 	public void setEditMode(boolean editMode) {
 		this.editMode = editMode;
 	}
 
+    // --------------------------------------------------------------------------------------------------------------------
+
 	public Task getTaskInEdit() {
 		return taskInEdit;
 	}
+
+    // --------------------------------------------------------------------------------------------------------------------
 
 	public void setTaskInEdit(Task taskInEdit) {
 		this.taskInEdit = taskInEdit;

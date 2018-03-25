@@ -125,7 +125,7 @@ public class TaskManager {
 			System.out.println("UPDATED size=" + taskCollection.getTasks().size());
 		}
 	}
-	
+
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	public static boolean hasTask(Task task) { return taskCollection.getTasks().containsKey(task.getTaskDate()); }

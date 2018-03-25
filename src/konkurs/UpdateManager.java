@@ -97,7 +97,29 @@ public class UpdateManager {
 			updateControl.onUpdateError();
 		}
 	}
-	
+
+	// --------------------------------------------------------------------------------------------------------------------
+
+	public static int updateRequired() throws Exception {
+		try {
+			String result = Utils.getHTML(UPDATE_URL + UPDATE_URL_TARGET_SYNC);
+			
+			if(updateTargetMd5 != null) {
+				System.out.println(result + " <==> " + updateTargetMd5);
+				
+				if(!result.isEmpty()) 
+				{
+					
+					if(updateTargetMd5.equals(result)) return 3;
+					else return 1;
+					
+				} else return 2;
+			}
+		} catch (IOException e) { return -1; }
+		
+		return 0;
+	}
+
 	// --------------------------------------------------------------------------------------------------------------------
 	
 	public static void exportTargetMD5ToFile(String fileName) throws NoSuchAlgorithmException, IOException {
@@ -106,8 +128,6 @@ public class UpdateManager {
 		FileOutputStream fos = new FileOutputStream(fileName);
 		fos.write(md5.getBytes(), 0, md5.length());
 		fos.close();
-		
-		System.out.println("UpdateManager.exportTargetMD5ToFile() Export done");
 	}
 	
 	// --------------------------------------------------------------------------------------------------------------------
@@ -122,10 +142,10 @@ public class UpdateManager {
 			
 			FileOutputStream fos = new FileOutputStream("MyOrganizer-Update.jar");
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-			
 			fos.close();
 			
-			System.out.println("[UPDATE_PROCESS] Download done.");
+			updateControl.onUpdateComplete();
+			Thread.sleep(2000);
 			
 			System.out.println("[UPDATE_PROCESS] Applying update...");
 			
@@ -137,7 +157,7 @@ public class UpdateManager {
 					try {
 						Files.createDirectory(oldVersionsPath);
 					} catch(FileAlreadyExistsException ex) {
-						System.out.println("[UPDATE_PROCESS] Old Dir exist :D");
+						System.out.println("[UPDATE_PROCESS] Directory exist");
 					} catch (IOException ex) {
 						DialogHelper.showExceptionDialog((Exception)ex);
 						ex.printStackTrace();
@@ -162,8 +182,6 @@ public class UpdateManager {
 					}
 				}
 			});
-			
-			System.out.println("[UPDATE_PROCESS] All done!");
 		}
 	}
 	

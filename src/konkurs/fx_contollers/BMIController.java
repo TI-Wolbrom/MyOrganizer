@@ -32,18 +32,18 @@ public class BMIController {
 		double wzrostDouble = 0;
 		double wynikDouble;
 			
-			// dodaæ minimalny wzrost i wagê
+			// dodaÄ‡ minimalny wzrost i wagÄ™
 		
 			try {
 				masaDouble = Double.parseDouble(masa);
 			} catch (NumberFormatException e) {
-				masaCiala.setText("Masa cia³a zosta³a b³êdnie podana");
+				masaCiala.setText("Masa ciaÅ‚a zostaÅ‚a bÅ‚Ä™dnie podana");
 			}
 			try {
 				wzrost.setPromptText("np. 1.92");
 				wzrostDouble = Double.parseDouble(wzr);
 			} catch (NumberFormatException e) {
-				wzrost.setText("Wzrost zosta³ b³êdnie podany");
+				wzrost.setText("Wzrost zostaÅ‚ bÅ‚Ä™dnie podany");
 			}
 	
 			try {

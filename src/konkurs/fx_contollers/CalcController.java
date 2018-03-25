@@ -31,9 +31,9 @@ public class CalcController {
 	@FXML
 	private void initialize() {
 		rodzajAktywnosci.getItems().addAll("Aerobik", "Boks", "Jazda na rowerze", "Bieganie (ok. 8km/h)",
-				"Bieganie (ok. 15km/h)", "Jazda na nartach", "Koszykówka", "Siatkówka", "Skakanka",
-				"Skakanie na trampolinie", "Gra w krêgle", "Jazda na deskorolce", "Spacer", "Golf");
-		rodzajAktywnosci.setPromptText("Wybierz aktywnoœæ");
+				"Bieganie (ok. 15km/h)", "Jazda na nartach", "KoszykÃ³wka", "SiatkÃ³wka", "Skakanka",
+				"Skakanie na trampolinie", "Gra w krÄ™gle", "Jazda na deskorolce", "Spacer", "Golf");
+		rodzajAktywnosci.setPromptText("Wybierz aktywnoÅ›Ä‡");
 	}
 
 	@FXML
@@ -44,164 +44,164 @@ public class CalcController {
 		double masaInt = 0;
 		int czasTreninguInt = 0;
 		double spaloneKalorieInt;
+		try {
+			masaInt = Double.parseDouble(masa);
+		} catch (NumberFormatException e) {
+			masaCiala.setText("Masa ciaÅ‚a zostaÅ‚a bÅ‚Ä™dnie podana");
+		}
+		try {
+			czasTreninguInt = Integer.parseInt(czasTreningu);
+		} catch (NumberFormatException e) {
+			czas.setText("Czas zostaÅ‚ bÅ‚Ä™dnie podany");
+		}
+
+		switch (aktywnosc) {
+		case "Boks": {
 			try {
-				masaInt = Double.parseDouble(masa);
-			} catch (NumberFormatException e) {
-				masaCiala.setText("Masa cia³a zosta³a b³êdnie podana");
+				spaloneKalorieInt = (0.16 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
+			break;
+		}
+		case "Aerobik": {
 			try {
-				czasTreninguInt = Integer.parseInt(czasTreningu);
-			} catch (NumberFormatException e) {
-				czas.setText("Czas zosta³ b³êdnie podany");
+				spaloneKalorieInt = (0.12 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-	
-			switch (aktywnosc) {
-			case "Boks": {
-				try {
-					spaloneKalorieInt = (0.16 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Jazda na rowerze": {
+			try {
+				spaloneKalorieInt = (0.17 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Aerobik": {
-				try {
-					spaloneKalorieInt = (0.12 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Bieganie (ok. 8km/h)": {
+			try {
+				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Jazda na rowerze": {
-				try {
-					spaloneKalorieInt = (0.17 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Bieganie (ok. 15km/h)": {
+			try {
+				spaloneKalorieInt = (0.27 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Bieganie (ok. 8km/h)": {
-				try {
-					spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Jazda na nartach": {
+			try {
+				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Bieganie (ok. 15km/h)": {
-				try {
-					spaloneKalorieInt = (0.27 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "KoszykÃ³wka": {
+			try {
+				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Jazda na nartach": {
-				try {
-					spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "SiatkÃ³wka": {
+			try {
+				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Koszykówka": {
-				try {
-					spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Skakanka": {
+			try {
+				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Siatkówka": {
-				try {
-					spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Skakanie na trampolinie": {
+			try {
+				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Skakanka": {
-				try {
-					spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Gra w krï¿½gle": {
+			try {
+				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Skakanie na trampolinie": {
-				try {
-					spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Jazda na deskorolce": {
+			try {
+				spaloneKalorieInt = (0.09 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Gra w krêgle": {
-				try {
-					spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Spacer": {
+			try {
+				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Jazda na deskorolce": {
-				try {
-					spaloneKalorieInt = (0.09 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
+			break;
+		}
+		case "Golf": {
+			try {
+				spaloneKalorieInt = (0.09 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			case "Spacer": {
-				try {
-					spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
-			}
-			case "Golf": {
-				try {
-					spaloneKalorieInt = (0.09 * masaInt) * czasTreninguInt;
-					String kalorie = Double.toString(spaloneKalorieInt);
-					spaloneKalorie.setText(kalorie);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				break;
-			}
-	
-			default: {
-	
-			}
-			}
-	
+			break;
+		}
+
+		default: {
+
+		}
+		}
+
 	}
 
 	@FXML

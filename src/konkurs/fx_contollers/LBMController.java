@@ -28,12 +28,12 @@ public class LBMController {
 	@FXML
 	private TextField LBM;
 
-	// dodaæ minimalny wzrost i wagê
+	// dodaj minimalny wzrost i wagÄ™
 	
 	@FXML
 	private void initialize() {
-		plec.getItems().addAll("Kobieta", "Mê¿czyzna");
-		plec.setPromptText("Wybierz p³eæ");
+		plec.getItems().addAll("Kobieta", "MÄ™Å¼czyzna");
+		plec.setPromptText("Wybierz pÅ‚eÄ‡");
 	}
 
 	@FXML
@@ -48,17 +48,17 @@ public class LBMController {
 			try {
 				masaDouble = Double.parseDouble(masa);
 			} catch (NumberFormatException e) {
-				masaCiala.setText("Masa cia³a zosta³a b³êdnie podana");
+				masaCiala.setText("Masa ciaÅ‚a zostaÅ‚a bÅ‚Ä™dnie podana");
 			}
 			
 			try {
 				wzrostDouble = Double.parseDouble(wzr);
 			} catch (NumberFormatException e) {
-				wzrost.setText("Wzrost zosta³ b³êdnie podany");
+				wzrost.setText("Wzrost zostaÅ‚ bÅ‚Ä™dnie podany");
 			}
 
 			switch (p) {
-				case "Mê¿czyzna": {
+				case "Mï¿½czyzna": {
 				try {
 					wynikDouble = 0.22 * wzrostDouble + 0.278 * masaDouble;
 					String wynik = Double.toString(wynikDouble);
