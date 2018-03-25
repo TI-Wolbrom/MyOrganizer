@@ -32,7 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import konkurs.fx.dialogs.DialogHelper;
-import konkurs.taskmodules.impl.TaskManager;a
+import konkurs.taskmodules.impl.TaskManager;
 
 public class Main extends Application {
 
@@ -387,6 +387,7 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Metoda main
 	// -----------------------------------------------------------------------------------------------------------------------------
+	
 	public static void main(String[] args) {
 		try {
 			if (args.length > 0) {
