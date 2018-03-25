@@ -32,7 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import konkurs.fx.dialogs.DialogHelper;
-import konkurs.taskmodules.impl.TaskManager;
+import konkurs.taskmodules.impl.TaskManager;a
 
 public class Main extends Application {
 
@@ -297,6 +297,18 @@ public class Main extends Application {
 
 		BorderPane pane = loader.load();
 
+		mainStage.setScene(new Scene(pane));
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// Ta metoda sluzy do stworzenia sceny BMI
+	// -----------------------------------------------------------------------------------------------------------------------------
+	public void buildPlanTView() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/resources/fxml/planTView.fxml"));
+		
+		BorderPane pane = loader.load();
+		
 		mainStage.setScene(new Scene(pane));
 	}
 

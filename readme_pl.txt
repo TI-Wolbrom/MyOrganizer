@@ -1,7 +1,10 @@
 ﻿Opis programu:
 - ....
 Wymagania sprzętowe:
-    - Zainstalowana Java 8
+    - Procesor posiadający taktowanie co najmniej 1GHz
+    - Pamięć RAM: 256MB
+    - Wolne miejsce na dysku twardym: ~1MB
+    - Zainstalowana Java 8 (zalecane Version 8 Update 161 lub nowsza)
     - Dostęp do internetu w razie automatycznych aktualizacji.
     - Wspierane systemy: 
         - Windows (100%), 
