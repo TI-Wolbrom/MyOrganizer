@@ -21,7 +21,7 @@
       </AnchorPane>
    </bottom>
    <top>
-      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" BorderPane.alignment="CENTER">
+      <Label fx:id="nazwaP" alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" BorderPane.alignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>

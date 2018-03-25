@@ -34,35 +34,18 @@
       <AnchorPane prefHeight="303.0" prefWidth="184.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPlan" prefHeight="25.0" prefWidth="130.0" text="Dodaj plan trenigowy" />
-            <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#dropPT" prefHeight="25.0" prefWidth="130.0" text="Usuń plan trenigowy" />
-            <Button layoutX="14.0" layoutY="98.0" mnemonicParsing="false" onAction="#viewPlan" prefHeight="25.0" prefWidth="130.0" text="Wyświetl plan" />
+            <Button layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#viewPlan" prefHeight="25.0" prefWidth="130.0" text="Wyświetl plan" />
          </children>
       </AnchorPane>
    </right>
    <center>
       <Accordion BorderPane.alignment="CENTER">
          <panes>
-            <TitledPane animated="false" prefHeight="278.0" prefWidth="500.0" text="Moje plany trenigowe">
+            <TitledPane animated="false" prefHeight="278.0" prefWidth="500.0" text="Plany trenigowe">
                <content>
                   <ScrollPane>
                      <content>
                         <GridPane fx:id="grid1" prefHeight="250.0" prefWidth="376.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </TitledPane>
-            <TitledPane animated="false" text="Podstawowe plany trenigowe">
-               <content>
-                  <ScrollPane>
-                     <content>
-                        <GridPane fx:id="grid2" prefHeight="242.0" prefWidth="369.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>

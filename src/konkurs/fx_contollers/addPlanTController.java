@@ -1,7 +1,12 @@
 package konkurs.fx_contollers;
 
 import javafx.scene.control.Label;
+
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,18 +18,13 @@ import konkurs.fx.dialogs.DialogHelper;
 public class addPlanTController {
 	
 	private int i = 1;
-	
 	private String stylesR = "-fx-background-color: #CC3300;";
 	private String styles = "-fx-background-color: #FFCCCC;";
-	
 	private String cwiczText;
 	private String powtText;
 	private String czassText;
-
 	private String[][] tab = new String[250][3];
-	
 	public static String nazwaPlanu;
-	
 	@FXML
 	private GridPane grid;
 	@FXML
@@ -38,6 +38,7 @@ public class addPlanTController {
 
 	@FXML
 	public void onBtnReturn(ActionEvent event) {
+		
 		try {
 			AppManager.getAppInstance().buildPlanTEditor();
 			}catch (Exception ex) {
@@ -49,6 +50,7 @@ public class addPlanTController {
 
 	@FXML
 	public void dodaj(ActionEvent event) {
+		
 		cwiczText = cwicz.getText();
 		powtText = powt.getText();
 		czassText = czas.getText();
@@ -77,7 +79,6 @@ public class addPlanTController {
 		}
 		
 		if(cwiczText.isEmpty()) {
-			
 		}else{		
 		cwiczenie.setText(cwiczText);
 		powtorz.setText(powtText);
@@ -91,12 +92,29 @@ public class addPlanTController {
 	}
 	
 	@FXML
-	public void zapisz(ActionEvent event) throws FileNotFoundException {
+	public void zapisz(ActionEvent event) throws IOException {
+		
 		nazwaPlanu=nazwa.getText();
+		if(nazwaPlanu.isEmpty()) {
+			nazwaPlanu="-";
+		}
 		PrintWriter zapis = new PrintWriter("gym_data/plany_treningowe/"+nazwaPlanu+".txt");
 		for(int x=1;x<=i-1;x++) {
 			zapis.println(tab[x][0]+";"+tab[x][1]+";"+tab[x][2]);
 		}
+		File file = new File("gym_data/plany_treningowe/plany_treningowe_lista.txt");
+
+            try {
+				file.createNewFile();
+				FileWriter fileWritter = new FileWriter(file,true);
+		        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+		        bufferWritter.write(nazwaPlanu+";");
+		        bufferWritter.close();		
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        
+		
 	    zapis.close();
 	}
 }
