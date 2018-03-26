@@ -12,16 +12,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.PlanTreninguController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.PlanTreninguController" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);;">
    <bottom>
       <AnchorPane prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnReturn" layoutX="466.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" AnchorPane.rightAnchor="14.0" />
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="%gym.return" AnchorPane.rightAnchor="14.0" />
          </children>
       </AnchorPane>
    </bottom>
    <top>
-      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="Plany treningowe" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="%gym.plany_t" BorderPane.alignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>
@@ -33,15 +33,15 @@
    <right>
       <AnchorPane prefHeight="303.0" prefWidth="184.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPlan" prefHeight="25.0" prefWidth="130.0" text="Dodaj plan trenigowy" />
-            <Button layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#viewPlan" prefHeight="25.0" prefWidth="130.0" text="Wyświetl plan" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPlan" prefHeight="25.0" prefWidth="130.0" text="%gym.dod_plan" />
+            <Button layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#viewPlan" prefHeight="25.0" prefWidth="130.0" text="%gym.wys_plan" />
          </children>
       </AnchorPane>
    </right>
    <center>
       <Accordion BorderPane.alignment="CENTER">
          <panes>
-            <TitledPane animated="false" prefHeight="278.0" prefWidth="500.0" text="Plany trenigowe">
+            <TitledPane animated="false" prefHeight="278.0" prefWidth="500.0" text="%gym.plany_t">
                <content>
                   <ScrollPane>
                      <content>

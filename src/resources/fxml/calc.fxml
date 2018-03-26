@@ -8,47 +8,47 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.CalcController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.CalcController" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);;">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="556.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <ComboBox fx:id="rodzajAktywnosci" layoutX="169.0" layoutY="18.0" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="51.0" />
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="156.0" text="Rodzaj aktywności:" AnchorPane.leftAnchor="14.0">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="156.0" text="%gym.rodz_akt" AnchorPane.leftAnchor="14.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="57.0" prefHeight="32.0" prefWidth="156.0" text="Czas (min):" AnchorPane.leftAnchor="14.0">
+            <Label layoutX="14.0" layoutY="57.0" prefHeight="32.0" prefWidth="156.0" text="%gym.czas_min" AnchorPane.leftAnchor="14.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="czas" layoutX="170.0" layoutY="61.0" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="50.0" />
-            <Label layoutX="14.0" layoutY="103.0" prefHeight="32.0" prefWidth="156.0" text="Masa ciała (kg):" AnchorPane.leftAnchor="14.0">
+            <Label layoutX="14.0" layoutY="103.0" prefHeight="32.0" prefWidth="156.0" text="%gym.masa_kg" AnchorPane.leftAnchor="14.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="masaCiala" layoutX="170.0" layoutY="107.0" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="50.0" />
-            <Label layoutX="14.0" layoutY="218.0" prefHeight="32.0" prefWidth="156.0" text="Spalone kalorie:" AnchorPane.leftAnchor="14.0">
+            <Label layoutX="14.0" layoutY="218.0" prefHeight="32.0" prefWidth="156.0" text="%gym.spalone_k" AnchorPane.leftAnchor="14.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="spaloneKalorie" editable="false" layoutX="169.0" layoutY="222.0" prefHeight="25.0" prefWidth="300.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="51.0" />
-            <Button fx:id="oblicz" layoutX="364.0" layoutY="160.0" mnemonicParsing="false" onAction="#oblicz" prefHeight="25.0" prefWidth="106.0" text="Oblicz" AnchorPane.rightAnchor="50.0" />
+            <Button fx:id="oblicz" layoutX="364.0" layoutY="160.0" mnemonicParsing="false" onAction="#oblicz" prefHeight="25.0" prefWidth="106.0" text="%gym.oblicz" AnchorPane.rightAnchor="50.0" />
          </children>
       </AnchorPane>
    </center>
    <bottom>
       <AnchorPane prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnReturn" layoutX="466.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" AnchorPane.rightAnchor="14.0" />
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="%gym.return" AnchorPane.rightAnchor="14.0" />
          </children>
       </AnchorPane>
    </bottom>
    <top>
-      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="Kalkulator spalania kalorii" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" maxWidth="3000.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #FF3333;" text="%gym.kalks" BorderPane.alignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>

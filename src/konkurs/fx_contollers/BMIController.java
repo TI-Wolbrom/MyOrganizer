@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import konkurs.AppManager;
+import konkurs.Main;
 import konkurs.fx.dialogs.DialogHelper;
 
 public class BMIController {
@@ -37,13 +38,13 @@ public class BMIController {
 			try {
 				masaDouble = Double.parseDouble(masa);
 			} catch (NumberFormatException e) {
-				masaCiala.setText("Masa ciała została błędnie podana");
+				masaCiala.setText(Main.bundle.getString("gym.bad_weight"));
 			}
 			try {
-				wzrost.setPromptText("np. 1.92");
+				wzrost.setPromptText("ex. 1.92?..");
 				wzrostDouble = Double.parseDouble(wzr);
 			} catch (NumberFormatException e) {
-				wzrost.setText("Wzrost został błędnie podany");
+				wzrost.setText(Main.bundle.getString("gym.bad_height"));
 			}
 	
 			try {

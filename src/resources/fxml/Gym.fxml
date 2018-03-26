@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.GymController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="konkurs.fx_contollers.GymController" style="-fx-background-color: linear-gradient(to bottom, rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);;">
    <top>
       <AnchorPane prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </top>
    <right>
       <AnchorPane prefHeight="313.0" prefWidth="191.0">
          <children>
-            <TitledPane animated="false" layoutX="15.0" prefHeight="126.0" prefWidth="161.0" text="Zawartość dodatkowa">
+            <TitledPane animated="false" layoutX="15.0" prefHeight="126.0" prefWidth="161.0" text="%gym.zaw_dod">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="96.0" prefWidth="159.0">
                      <children>
-                        <Button layoutX="-1.0" mnemonicParsing="false" onAction="#onMenuItemCalc" prefHeight="25.0" prefWidth="161.0" text="Kalkulator spalania kalorii">
+                        <Button layoutX="-1.0" mnemonicParsing="false" onAction="#onMenuItemCalc" prefHeight="25.0" prefWidth="161.0" text="%gym.kalks">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Button>
-                        <Button layoutX="-1.0" layoutY="25.0" mnemonicParsing="false" onAction="#onMenuItemPlanT" prefHeight="25.0" prefWidth="161.0" text="Plany treningowe">
+                        <Button layoutX="-1.0" layoutY="25.0" mnemonicParsing="false" onAction="#onMenuItemPlanT" prefHeight="25.0" prefWidth="161.0" text="%gym.plany_t">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -53,8 +53,8 @@
    <bottom>
       <AnchorPane prefHeight="65.0" prefWidth="522.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="33.0" layoutY="20.0" mnemonicParsing="false" onAction="#zapisz" prefHeight="25.0" prefWidth="120.0" text="Zapisz zmiany" AnchorPane.leftAnchor="33.0" />
-            <Button fx:id="btnReturn" layoutX="466.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="Powrót" AnchorPane.rightAnchor="14.0" />
+            <Button layoutX="33.0" layoutY="20.0" mnemonicParsing="false" onAction="#zapisz" prefHeight="25.0" prefWidth="120.0" text="%gym.save" AnchorPane.leftAnchor="33.0" />
+            <Button fx:id="btnReturn" layoutX="466.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBtnReturn" prefHeight="25.0" prefWidth="120.0" text="%gym.return" AnchorPane.rightAnchor="14.0" />
          </children>
       </AnchorPane>
    </bottom>
@@ -70,14 +70,14 @@
          <center>
             <Accordion BorderPane.alignment="CENTER">
               <panes>
-                <TitledPane fx:id="informacje" animated="false" prefWidth="386.0" text="Informacje">
+                <TitledPane fx:id="informacje" animated="false" prefWidth="386.0" text="%gym.info">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="592.0" prefWidth="373.0">
                            <children>
-                              <Label layoutX="7.0" layoutY="6.0" prefHeight="17.0" prefWidth="162.0" text="Masa ciała(kg):" />
-                              <Label layoutX="7.0" layoutY="31.0" prefHeight="17.0" prefWidth="160.0" text="Obwód klatki piersiowej(cm):" />
-                              <Label layoutX="7.0" layoutY="59.0" prefHeight="17.0" prefWidth="161.0" text="Obwód brzucha(cm):" />
-                              <Label layoutX="7.0" layoutY="84.0" prefHeight="17.0" prefWidth="160.0" text="Obwód bicepsa(cm):" />
+                              <Label layoutX="7.0" layoutY="6.0" prefHeight="17.0" prefWidth="162.0" text="%gym.masa_kg" />
+                              <Label layoutX="7.0" layoutY="31.0" prefHeight="17.0" prefWidth="160.0" text="%gym.obw_klatki" />
+                              <Label layoutX="7.0" layoutY="59.0" prefHeight="17.0" prefWidth="161.0" text="%gym.obw_brzucha" />
+                              <Label layoutX="7.0" layoutY="84.0" prefHeight="17.0" prefWidth="160.0" text="%gym.obw_bic" />
                               <TextField fx:id="masaCiala" layoutX="170.0" layoutY="2.0" prefHeight="25.0" prefWidth="200.0" />
                               <TextField fx:id="obwodBrz" layoutX="170.0" layoutY="54.0" prefHeight="25.0" prefWidth="200.0" />
                               <TextField fx:id="obwodKP" layoutX="170.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" />

@@ -42,7 +42,6 @@ public class PlanTreninguController{
 	
 	@FXML
 	public void addPlan(){
-		
 		try {
 			AppManager.getAppInstance().buildAddPlanTEditor();
 		} catch (Exception ex) {
@@ -56,7 +55,6 @@ public class PlanTreninguController{
 		
 		if(radio.isSelected()){
 			nazwaPlanu=radio.getText();
-			System.out.println(nazwaPlanu);
 		}else if(radio2.isSelected()){
 			nazwaPlanu=radio2.getText();
 		}else if(radio3.isSelected()){
@@ -86,7 +84,7 @@ public class PlanTreninguController{
 		}else if(radio15.isSelected()){
 			nazwaPlanu=radio15.getText();
 		}	
-		File plik1=new File("gym_data/plany_treningowe/nazwaPlanu_1.txt");
+		File plik1=new File("data/nazwaPlanu_1.txt");
 		plik1.createNewFile();
 		FileWriter fileWritter = new FileWriter(plik1);
         BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
@@ -116,7 +114,7 @@ public class PlanTreninguController{
    @FXML
    public void initialize() throws FileNotFoundException, IOException {
 	   
-	   		File plik=new File("gym_data/plany_treningowe/plany_treningowe_lista.txt");
+	   		File plik=new File("data/plany_treningowe_lista.txt");
 	   		Scanner odczyt = new Scanner(plik);
 	   		while(odczyt.hasNextLine()) {
 				line=odczyt.nextLine();

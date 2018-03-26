@@ -98,11 +98,11 @@ public class addPlanTController {
 		if(nazwaPlanu.isEmpty()) {
 			nazwaPlanu="-";
 		}
-		PrintWriter zapis = new PrintWriter("gym_data/plany_treningowe/"+nazwaPlanu+".txt");
+		PrintWriter zapis = new PrintWriter("data/"+nazwaPlanu+".txt");
 		for(int x=1;x<=i-1;x++) {
 			zapis.println(tab[x][0]+";"+tab[x][1]+";"+tab[x][2]);
 		}
-		File file = new File("gym_data/plany_treningowe/plany_treningowe_lista.txt");
+		File file = new File("data/plany_treningowe_lista.txt");
 
             try {
 				file.createNewFile();
