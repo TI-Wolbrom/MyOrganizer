@@ -1,7 +1,5 @@
 package konkurs.fx_contollers;
 
-import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
