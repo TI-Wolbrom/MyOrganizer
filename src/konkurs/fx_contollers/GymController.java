@@ -58,7 +58,7 @@ public class GymController {
     public void initialize() throws FileNotFoundException{
     	
     	data.setText(dtf.format(dataDzis));
-   		File plik=new File("gym_data/informacje.txt");
+   		File plik=new File("data/informacje.txt");
    		Scanner odczyt = new Scanner(plik);
    		while(odczyt.hasNextLine()) {
 			line=odczyt.nextLine();
@@ -128,7 +128,7 @@ public class GymController {
 		obwBrz=obwodBrz.getText();
 		obwKP=obwodKP.getText();
 		masaC=masaCiala.getText();
-		File plik=new File("gym_data/informacje.txt");
+		File plik=new File("data/informacje.txt");
 		PrintWriter zapis = new PrintWriter(plik);
 			zapis.write(obwBic+";"+obwBrz+";"+obwKP+";"+masaC);
 			zapis.close();

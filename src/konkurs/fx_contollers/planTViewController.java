@@ -35,13 +35,13 @@ public class planTViewController extends PlanTreninguController {
 	}
 	@FXML
 	public void initialize() throws IOException {
-		File plik1=new File("gym_data/plany_treningowe/nazwaPlanu_1.txt");
+		File plik1=new File("data/nazwaPlanu_1.txt");
    		Scanner odczyt1 = new Scanner(plik1);
    		while(odczyt1.hasNextLine()) {
 			line1=odczyt1.nextLine();
    		}
    		nazwaP.setText(line1);
-		File plik=new File("gym_data/plany_treningowe/"+line1+".txt");
+		File plik=new File("data/"+line1+".txt");
 		Scanner odczyt = new Scanner(plik);
 		while(odczyt.hasNextLine()) {
 			line=odczyt.nextLine();

@@ -16,7 +16,6 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -54,6 +53,10 @@ public class Main extends Application {
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
+	private CustomFXMLLoader loader;
+	
+	// --------------------------------------------------------------------------------------------------------------------
+	
 	public static ResourceBundle bundle;
 	
 	// --------------------------------------------------------------------------------------------------------------------
@@ -68,9 +71,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		mainStage = primaryStage;
-
+		
 		mainStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/resources/fxml/other_icons/appicon.png")));
-
+		
+		loader = new CustomFXMLLoader();
+		loader.setResources(bundle);
+		
 		buildLoadingScreen();
 		
 		AppManager.applyMain(this);
@@ -153,9 +159,7 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia okienka ladowania
 	// -----------------------------------------------------------------------------------------------------------------------------
 	private void buildLoadingScreen() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/First.fxml"));
-		loader.setResources(bundle);
 		
 		Pane pane = loader.load();
 		VBox vbox = (VBox) pane.getChildren().get(2);
@@ -170,9 +174,7 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia glownej sceny
 	// -----------------------------------------------------------------------------------------------------------------------------
 	private void buildMain() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Base.fxml"));
-		loader.setResources(bundle);
 
 		StackPane pane = loader.load();
 
@@ -204,7 +206,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny o autorach
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildAbout() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/About.fxml"));
 
 		StackPane pane = loader.load();
@@ -218,9 +219,7 @@ public class Main extends Application {
 	// "factory" albo cos w tym stylu.
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildEventsEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Events.fxml"));
-		loader.setResources(bundle);
 		
 		SplitPane pane = loader.load();
 
@@ -231,9 +230,7 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny planu lekcji
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildPlanEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Plan.fxml"));
-		loader.setResources(bundle);
 		
 		GridPane pane = loader.load();
 		
@@ -244,7 +241,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny silowni
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildGymEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Gym.fxml"));
 
 		BorderPane pane = loader.load();
@@ -256,7 +252,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny kalkulatora
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildCalcEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/calc.fxml"));
 
 		BorderPane pane = loader.load();
@@ -268,7 +263,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny planu treningowego
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildPlanTEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/planTreningowy.fxml"));
 
 		BorderPane pane = loader.load();
@@ -280,9 +274,8 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny dodawania planu treningowego
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildAddPlanTEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/addPlanT.fxml"));
-
+		
 		BorderPane pane = loader.load();
 
 		mainStage.setScene(new Scene(pane));
@@ -292,7 +285,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny BMI
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildBMIEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/BMI.fxml"));
 
 		BorderPane pane = loader.load();
@@ -304,7 +296,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny BMI
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildPlanTView() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/planTView.fxml"));
 		
 		BorderPane pane = loader.load();
@@ -316,7 +307,6 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny LBM
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildLBMEditor() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/LBM.fxml"));
 
 		BorderPane pane = loader.load();
@@ -328,9 +318,7 @@ public class Main extends Application {
 	// Ta metoda sluzy do stworzenia sceny ustawien
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public void buildSettings() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/resources/fxml/Options.fxml"));
-		loader.setResources(bundle);
 		
 		AnchorPane pane = loader.load();
 
@@ -387,7 +375,6 @@ public class Main extends Application {
 	// -----------------------------------------------------------------------------------------------------------------------------
 	// Metoda main
 	// -----------------------------------------------------------------------------------------------------------------------------
-	
 	public static void main(String[] args) {
 		try {
 			if (args.length > 0) {
@@ -429,4 +416,3 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-}

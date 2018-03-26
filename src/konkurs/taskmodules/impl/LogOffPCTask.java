@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 import konkurs.AppManager;
+import konkurs.Utils;
 
 public class LogOffPCTask extends Task {
 
@@ -25,6 +26,7 @@ public class LogOffPCTask extends Task {
 		if (AppManager.OS_NAME.indexOf("win") >= 0) {
 			try {
 				// Dla Windows
+				Utils.unlockInstance();
 				Runtime.getRuntime().exec("shutdown -l");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -33,6 +35,7 @@ public class LogOffPCTask extends Task {
 				|| AppManager.OS_NAME.indexOf("aix") > 0) {
 			try {
 				// Dla Linux
+				Utils.unlockInstance();
 				Runtime.getRuntime().exec("kill -9 -1");
 			} catch (IOException e) {
 				e.printStackTrace();

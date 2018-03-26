@@ -49,7 +49,7 @@ public class DialogHelper {
 		try {
 			GridPane gp = loader.load();
 			ExceptionDialogController edc = (ExceptionDialogController) loader.getController();
-			edc.messageLabel.setText("Wystąpił wyjątek:");
+			edc.messageLabel.setText("Exception:");
 
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);

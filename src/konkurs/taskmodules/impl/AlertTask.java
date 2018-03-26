@@ -27,8 +27,8 @@ public class AlertTask extends Task {
 			@Override
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("MyOrganizer -- Wydarzenia");
-				alert.setHeaderText("Informacja!");
+				alert.setTitle("MyOrganizer");
+				alert.setHeaderText(null);
 				alert.setContentText(message);
 				alert.showAndWait();
 			}

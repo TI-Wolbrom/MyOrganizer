@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import konkurs.AppManager;
+import konkurs.Main;
 import konkurs.fx.dialogs.DialogHelper;
 
 public class CalcController {
@@ -30,14 +31,29 @@ public class CalcController {
 
 	@FXML
 	private void initialize() {
-		rodzajAktywnosci.getItems().addAll("Aerobik", "Boks", "Jazda na rowerze", "Bieganie (ok. 8km/h)",
-				"Bieganie (ok. 15km/h)", "Jazda na nartach", "Koszykówka", "Siatkówka", "Skakanka",
-				"Skakanie na trampolinie", "Gra w kręgle", "Jazda na deskorolce", "Spacer", "Golf");
-		rodzajAktywnosci.setPromptText("Wybierz aktywność");
+		rodzajAktywnosci.getItems().addAll
+		(
+				Main.bundle.getString("gym.aerobik"), 
+				Main.bundle.getString("gym.boks"), 
+				Main.bundle.getString("gym.jazda_row"), 
+				Main.bundle.getString("gym.bieg8"),
+				Main.bundle.getString("gym.bieg15"), 
+				Main.bundle.getString("gym.jazda_n"), 
+				Main.bundle.getString("gym.koszykowka"), 
+				Main.bundle.getString("gym.siatkowka"), 
+				Main.bundle.getString("gym.skakanka"),
+				Main.bundle.getString("gym.trampolina"), 
+				Main.bundle.getString("gym.kregle"),
+				Main.bundle.getString("gym.jazda_d"), 
+				Main.bundle.getString("gym.spacer"), 
+				Main.bundle.getString("gym.golf")
+		);
+		
+		rodzajAktywnosci.setPromptText(Main.bundle.getString("gym.wyb_rodz_akt"));
 	}
 
 	@FXML
-	public void oblicz() {
+	public void oblicz() {		
 		String aktywnosc = rodzajAktywnosci.getValue();
 		String masa = masaCiala.getText();
 		String czasTreningu = czas.getText();
@@ -47,161 +63,99 @@ public class CalcController {
 		try {
 			masaInt = Double.parseDouble(masa);
 		} catch (NumberFormatException e) {
-			masaCiala.setText("Masa ciała została błędnie podana");
+			masaCiala.setText(Main.bundle.getString("gym.bad_weight"));
 		}
 		try {
 			czasTreninguInt = Integer.parseInt(czasTreningu);
 		} catch (NumberFormatException e) {
-			czas.setText("Czas został błędnie podany");
+			czas.setText(Main.bundle.getString("gym.bad_time"));
 		}
 
-		switch (aktywnosc) {
-		case "Boks": {
-			try {
-				spaloneKalorieInt = (0.16 * masaInt) * czasTreninguInt;
-				String kalorie = Double.toString(spaloneKalorieInt);
-				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Aerobik": {
+		if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.aerobik"))) {
 			try {
 				spaloneKalorieInt = (0.12 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Jazda na rowerze": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.boks"))) {
+			try {
+				spaloneKalorieInt = (0.16 * masaInt) * czasTreninguInt;
+				String kalorie = Double.toString(spaloneKalorieInt);
+				spaloneKalorie.setText(kalorie);
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.jazda_row"))) {
 			try {
 				spaloneKalorieInt = (0.17 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Bieganie (ok. 8km/h)": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.bieg8"))) {
 			try {
 				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Bieganie (ok. 15km/h)": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.bieg15"))) {
 			try {
 				spaloneKalorieInt = (0.27 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Jazda na nartach": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.jazda_n"))) {
 			try {
 				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Koszykówka": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.koszykowka"))) {
 			try {
 				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Siatkówka": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.siatkowka"))) {
 			try {
 				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Skakanka": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.skakanka"))) {
 			try {
 				spaloneKalorieInt = (0.14 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Skakanie na trampolinie": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.trampolina"))) {
 			try {
 				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Gra w kr�gle": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.kregle"))) {
 			try {
 				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Jazda na deskorolce": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.jazda_d"))) {
 			try {
 				spaloneKalorieInt = (0.09 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Spacer": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.spacer"))) {
 			try {
 				spaloneKalorieInt = (0.06 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-		}
-		case "Golf": {
+			} catch (Exception e) {}
+		} else if(aktywnosc.equalsIgnoreCase(Main.bundle.getString("gym.golf"))) {
 			try {
 				spaloneKalorieInt = (0.09 * masaInt) * czasTreninguInt;
 				String kalorie = Double.toString(spaloneKalorieInt);
 				spaloneKalorie.setText(kalorie);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
+			} catch (Exception e) {}
 		}
-
-		default: {
-
-		}
-		}
-
 	}
 
 	@FXML
