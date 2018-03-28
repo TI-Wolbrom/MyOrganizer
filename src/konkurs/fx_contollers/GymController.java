@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import konkurs.AppManager;
+import konkurs.Main;
 import konkurs.fx.dialogs.DialogHelper;
 
 public class GymController {
@@ -45,8 +46,6 @@ public class GymController {
     private String obwBrz;
     private String obwBic;
     
-
-    
     @FXML
     public void onBtnReturn(ActionEvent event) {
     	AppManager.getAppInstance().switchToMain();
@@ -56,6 +55,7 @@ public class GymController {
 
     @FXML
     public void initialize() throws FileNotFoundException{
+    	Main.gymInitializeFiles();
     	
     	data.setText(dtf.format(dataDzis));
    		File plik=new File("data/informacje.txt");

@@ -1,5 +1,6 @@
 package konkurs;
 
+import java.awt.TrayIcon.MessageType;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,6 +12,8 @@ import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -98,8 +101,8 @@ public class Main extends Application {
 						e.printStackTrace();
 					} catch (IOException e) {
 						Alert alert = new Alert(AlertType.WARNING);
-						alert.setContentText("Nie udało się pobrać aktualizacji!\nSerwer nie odpowiada.");
-						alert.setTitle("Aktualizacja");
+						alert.setContentText(bundle.getString("updater.updateError"));
+						alert.setTitle(bundle.getString("updater.title"));
 						alert.showAndWait();
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -373,10 +376,28 @@ public class Main extends Application {
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------------
+	
+	public static void gymInitializeFiles() {
+		try { Files.createFile(Paths.get("data/informacje.txt")); }
+		catch (IOException e) { System.out.println("informacje.txt : skipping"); }
+		try { Files.createFile(Paths.get("data/nazwa_Planu_1.txt")); } 
+		catch(IOException e) { System.out.println("nazwa_Planu_1.txt : skipping"); }	
+		try { Files.createFile(Paths.get("data/plany_treningowe_lista.txt")); } 
+		catch(IOException e) { System.out.println("plany_treningowe_lista.txt : skipping"); }
+	}
+	
+	// -----------------------------------------------------------------------------------------------------------------------------
 	// Metoda main
 	// -----------------------------------------------------------------------------------------------------------------------------
 	public static void main(String[] args) {
 		try {
+			System.out.println("Checking java version...");
+			if(AppManager.JAVA_VERSION < 1.8) {
+				System.out.println("Java 1.8 Version is required at least to work properly continue on your own risk!");
+				JOptionPane.showMessageDialog(null, "Java 1.8 Version is required at least to work properly!", "Warning!", JOptionPane.WARNING_MESSAGE);
+			}
+			System.out.println(AppManager.JAVA_VERSION);
+					
 			if (args.length > 0) {
 				if(args[0].equalsIgnoreCase("-export")) {
 					UpdateManager.exportTargetMD5ToFile("sync.txt");
@@ -388,10 +409,12 @@ public class Main extends Application {
 			}
 
 			Utils.lockInstance();
-
+			
 			// Wczytywanie ustawien
 			processSettings("load");
 
+			gymInitializeFiles();
+			
 			switch (settings.langInterface) 
 			{
 				case PL: bundle = ResourceBundle.getBundle("Interface", new Locale("PL")); break;
