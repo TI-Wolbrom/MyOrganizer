@@ -7,7 +7,7 @@ public class AppManager {
 
 	// --------------------------------------------------------------------------------------------------------------------
 	
-	public static final String VERSION = "1.0.1";
+	public static final String VERSION = "1.0.2";
 	public static String OS_NAME = System.getProperty("os.name").toLowerCase();
 	public static double JAVA_VERSION = getVersion ();
 	
